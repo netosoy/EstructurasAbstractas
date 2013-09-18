@@ -1,0 +1,10 @@
+#include"dataStruc.hh"
+#include <iostream>
+#include <vector>
+
+class Edge{
+
+
+
+};
+
