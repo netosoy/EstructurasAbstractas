@@ -131,7 +131,7 @@ void MiBag::iterate_Edge(void) {
 		T_celda * conductor;
 		conductor = primer_elemento;  
       while (conductor!= NULL){
-      	conductor->edge.toString();
+      	edge.toString();
  			conductor = conductor->proximo;
       }
 }  

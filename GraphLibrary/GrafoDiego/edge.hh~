@@ -1,10 +1,24 @@
-#include"dataStruc.hh"
 #include <iostream>
 #include <vector>
+#include <string>
+
 
 class Edge{
 
-
+private:
+	int v;
+	int w;
+	float weight;
+	
+public:
+	Edge();
+	Edge(int v, int w, float weight);	
+	float Weight();
+	int either();
+	int other(int vertex);
+	int compareTo(Edge that);
+	void toString();
+	
 
 };
 

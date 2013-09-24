@@ -19,6 +19,6 @@ int main(void){
 	bolsa.add(arista);
 	bolsa.iterate_Edge();*/
 	//PRUEBA CLASE WEIGHTEDGRAPH
-	EdgeWeightedGraph mi_grafo;
+	weightedGraph mi_grafo;
 	return 0;
 }

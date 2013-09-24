@@ -69,5 +69,5 @@ void Graph::addEdge(int v, int w){
 }
 
 void Graph::print(int V){
-	adj[V].iterate_Int(); // imprime los vertices conectados a el vertice V
+	adj[V].iterate(); // imprime los vertices conectados a el vertice V
 }

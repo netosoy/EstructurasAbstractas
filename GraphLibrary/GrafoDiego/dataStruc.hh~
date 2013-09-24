@@ -50,8 +50,7 @@ public:
 	bool is_empty();
 	void add(int);
 	void add(const Edge&);
-	void iterate_Int(void);
-	void iterate_Edge(void);
+	void iterate(void);
 	int size_of(void);
 };
 
