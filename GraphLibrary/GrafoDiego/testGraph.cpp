@@ -20,5 +20,10 @@ int main(void){
 	bolsa.iterate_Edge();*/
 	//PRUEBA CLASE WEIGHTEDGRAPH
 	EdgeWeightedGraph mi_grafo;
+		cout<<"Ingrese un vertice"<<endl;
+	int Vertice;
+	cin>>Vertice;
+	cout<<"Los vertices conectados al vertice "<< Vertice<<" son: "<<endl;
+	mi_grafo.print(Vertice);
 	return 0;
 }

@@ -68,10 +68,12 @@ int EdgeWeightedGraph::Edges(){
 }
 
 void EdgeWeightedGraph::addEdge(Edge* e){
-	//adj[v].add(w); //agrega w a la lista de v
-	//adj[w].add(v); // agrega v a la lista de w
+	int u = e->either();
+	int v = e->other(u);
+	adj[u].add(*e); //agrega w a la lista de v
+	adj[v].add(*e); // agrega v a la lista de w
 }
-/*
+
 void EdgeWeightedGraph::print(int V){
-	adj[V].iterate_Int(); // imprime los vertices conectados a el vertice V
-}*/
+	adj[V].iterate_Edge(); // imprime los vertices conectados a el vertice V
+}

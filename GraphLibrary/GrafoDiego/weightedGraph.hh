@@ -16,6 +16,6 @@ public:
 	~EdgeWeightedGraph();
 	int Vertex(); // devuelve el numero de Vertices
 	int Edges(); // devuelve el numero de edge
-//	void print(int s); // imprime los vertices adyacentes a s
+	void print(int s); // imprime los vertices adyacentes a s
 	void addEdge( Edge* ); // agrega el objeto edge
 };
