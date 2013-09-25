@@ -1,0 +1,22 @@
+LAYOUT
+
+Multimedia: imagenes, audio, ...
+
+Proyecto1: src, build(Release), doc(doxigen.cnt, report.tex, install.tex, usage.tex, referencias), include, install(echo $PATH...), README, makefile(test, install, all, package), cmake, gitignore
+
+tests
+
+UML
+
+diagramas de flujo
+
+respaldo del wiki
+
+
+
+install: que requiere
+usage: como usar la libreria
+referencias: 
+include: archivos .h .hh
+
+
