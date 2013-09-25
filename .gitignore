@@ -1,0 +1,3 @@
+# ignore object and temporal files
+*.o
+*~
