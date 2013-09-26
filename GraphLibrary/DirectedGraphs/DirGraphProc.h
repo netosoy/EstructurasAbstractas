@@ -1,7 +1,9 @@
 #ifndef DirGraphProc_H
 #define DirGraphProc_H
 
-#include <dequeue>
+#include <deque>
+#include <stack>
+class Graph;
 /*
 class Iterable{
 	public:
@@ -28,7 +30,6 @@ class DirectedCycle{
 	public:
 		DirectedCycle(Graph& G);
 		bool hasCycle();
-		bool hasCycle();
 		std::stack<int> *GetCycle();
 		
 	private:
@@ -36,33 +37,33 @@ class DirectedCycle{
 		bool *marked;
 		int *edgeTo;
 		bool *onStack;
-		void dfs(Graph G, int v);
+		void dfs(Graph &G, int v);
 };
 
 class DepthFirstOrder{
 	public:
 		DepthFirstOrder(Graph& G);
-		std::dequeue *pre(){return &pre;}
-		std::dequeue *post(){return &post;}
-		std::dequeue *reversePost(){return &reversePost;}
+		std::deque<int> *Getpre(){return &pre;}
+		std::deque<int> *Getpost(){return &post;}
+		std::deque<int> *GetreversePost(){return &reversePost;}
 	private:
 		bool *marked;
-		std::dequeue<int> pre;
-		std::dequeue<int> post;
-		std::dequeue<int> reversePost;
+		std::deque<int> pre;
+		std::deque<int> post;
+		std::deque<int> reversePost;
 		void dfs(Graph &G, int v);	
 };
 
 class Topological{
 	public:
 		Topological(Graph &G);
-		std::dequeue *GetOrder();
+		std::deque<int> *GetOrder();
 		bool isDAG();
 	private:
-		int *order
+		std::deque<int> *order;
 };
 
-class Kosaraju{
+/*class Kosaraju{
 	public:
 		Kosaraju(Graph &G);
 		bool stronglyConnected(int v, int w){return id[v] == id[w];}
@@ -73,5 +74,5 @@ class Kosaraju{
 		int *id;
 		int count;
 		void dfs(Graph &G, int v);
-};
+};*/
 #endif

@@ -1,8 +1,7 @@
 #include "DirGraphProc.h"
 #include "Graph.h"
 /*
-//***********************************
-//Iterable Class Description
+Iterable Class Description
 
 Iterable::Iterable(int size){
 	Data = new int(size);
@@ -27,23 +26,25 @@ Iterable::~Iterable(){
 
 DirectedDFS::DirectedDFS(Graph& G, int s){
 	marked = new bool(G.V());
+	for(int i=0; i < G.V(); i++)
+		marked[i] = false;
 	dfs(G, s);
 }
 
 DirectedDFS::DirectedDFS(Graph& G, int *s, int elements){
 	marked = new bool(G.V());
 	for(int a = 0; a< elements; ++a)
-		if(!marked[s])
-			dfs(G,s);
+		if(!marked[s[a]])
+			dfs(G,s[a]);
 }
 
-void DirectedDFS::dfs(Graph G, int v){
+void DirectedDFS::dfs(Graph& G, int v){
 	marked[v] = true;
 	Bag *TempBag = G.Iterator(v);
 	TempBag->BeginIter();
 	int iter;
 	while(TempBag->HasNext())
-		if(iter = TempBag->Next())
+		if(!marked[(iter = TempBag->Next())])
 			dfs(G,iter);
 }
 
@@ -63,7 +64,7 @@ DirectedCycle::DirectedCycle(Graph& G){
 void DirectedCycle::dfs(Graph& G, int v){
 	onStack[v] = true;
 	marked[v] = true;
-	Bag *Temp = G.Iterator();
+	Bag *Temp = G.Iterator(v);
 	Temp->BeginIter();
 	int w;
 	while(Temp->HasNext()){
@@ -86,10 +87,10 @@ void DirectedCycle::dfs(Graph& G, int v){
 }
 
 bool DirectedCycle::hasCycle(){
-	return cycle != NULL;
+	return !cycle.empty();
 }
 
-std::stack *DirectedCycle::cycle(){
+std::stack<int> *DirectedCycle::GetCycle(){
 	return &cycle;
 }
 
@@ -98,7 +99,7 @@ std::stack *DirectedCycle::cycle(){
 //DepthFirstOrder class description
 
 DepthFirstOrder::DepthFirstOrder(Graph &G){
-	marked = new boolean(G.V());
+	marked = new bool(G.V());
 	
 	for(int v = 0; v < G.V(); v++)
 		if(!marked[v])
@@ -108,7 +109,7 @@ DepthFirstOrder::DepthFirstOrder(Graph &G){
 void DepthFirstOrder::dfs(Graph &G, int v){
 	pre.push_back(v);
 	marked[v] = true;
-	Bag *Temp = G.Iterator();
+	Bag *Temp = G.Iterator(v);
 	Temp->BeginIter();
 	int nextVert;	
 	while(Temp->HasNext()){
@@ -126,22 +127,22 @@ void DepthFirstOrder::dfs(Graph &G, int v){
 
 Topological::Topological(Graph &G){
 	DirectedCycle *FindCycle = new DirectedCycle(G);
-	if(!FindCycle.hasCycle()){
+	if(!FindCycle->hasCycle()){
 		delete FindCycle;
 		DepthFirstOrder *dfs = new DepthFirstOrder(G);
-		order = dfs->reversePost();
+		order = dfs->GetreversePost();
 	}
 }
-std::dequeue *Topological::GetOrder(){
+std::deque<int> *Topological::GetOrder(){
 	return order;
 }
 
 bool Topological::isDAG(){
-	return order != NULL;
+	return order != 0;
 }
 
 //*********************************
-
+/*
 //Kosaraju Algorithm
 
 Kosaraju::Kosaraju(Graph &G){
@@ -152,4 +153,4 @@ Kosaraju::Kosaraju(Graph &G){
 
 void Kosaraju::dfs(Graph &G, int v){
 
-}
+}*/

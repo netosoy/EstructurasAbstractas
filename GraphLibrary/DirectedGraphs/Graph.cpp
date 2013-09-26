@@ -51,7 +51,7 @@ int Bag::Next(){
 
 //Used to know if the Bag is Empty
 bool Bag::IsEmpty(){
-	return Head==0;
+	return Head==0&&position==0;
 }
 
 //************************************
@@ -87,7 +87,7 @@ void Graph::addEdge(int v1, int v2){
 	NumEdg++;
 }
 
-int main(){
+/*int main(){
 	Graph Prueba(12, Directed);
 	for (int a = 0; a < 12; a++)
 		for(int b = 0; b < 12; b++)
@@ -99,4 +99,4 @@ int main(){
 			std::cout<<Temp->Next()<<" ";
 		std::cout<<std::endl;
 	}
-}
+}*/
