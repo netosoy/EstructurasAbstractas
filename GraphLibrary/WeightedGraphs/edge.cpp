@@ -31,6 +31,12 @@ int Edge::compareTo(Edge that){
 	else	return 0;
 }
 
+Edge& Edge::operator=(const Edge &e){
+	v=e.v;
+	w=e.w;
+	weight=e.weight;
+	return *this;
+}
 void Edge::toString(){
 	cout<<v<<" "<<w<<" "<<weight<<endl;
 

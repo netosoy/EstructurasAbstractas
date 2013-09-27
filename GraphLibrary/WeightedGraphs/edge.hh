@@ -19,6 +19,7 @@ public:
 	int other(int vertex);
 	int compareTo(Edge that);
 	void toString();
+	Edge& operator=(const Edge&);
 	
 
 };
