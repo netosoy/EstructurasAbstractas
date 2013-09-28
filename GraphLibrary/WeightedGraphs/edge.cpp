@@ -1,18 +1,18 @@
 #include"edge.hh"
 
-Edge::Edge() : v(0), w(0), weight(0){
+Edge::Edge() : u(0), v(0), w(0){
 
 }
 
 
-Edge::Edge(int vertex1, int vertex2, float weight){
-	this->v=vertex1;
-	this->w=vertex2;
-	this->weight=weight;
+Edge::Edge(int vertex1, int vertex2, float W){
+	this->u=vertex1;
+	this->v=vertex2;
+	this->w=W;
 }
 
-float Edge::Weight(){
-	return weight;
+float Edge::weight(){
+	return w;
 }
 
 int Edge::either(){
@@ -20,25 +20,25 @@ int Edge::either(){
 }
 
 int Edge::other(int vertex){
-	if(vertex==v) return w;
-	else if (vertex==w) return v;
+	if(vertex==u) return v;
+	else if (vertex==v) return u;
 	else return 1;
 }
 
 int Edge::compareTo(Edge that){
-	if(this->Weight() < that.Weight()) return 1;
-	else if(this->Weight() > that.Weight()) return -1;
+	if(this->weight() < that.weight()) return 1;
+	else if(this->weight() > that.weight()) return -1;
 	else	return 0;
 }
 
 Edge& Edge::operator=(const Edge &e){
+	u=e.u;
 	v=e.v;
 	w=e.w;
-	weight=e.weight;
 	return *this;
 }
 void Edge::toString(){
-	cout<<v<<" "<<w<<" "<<weight<<endl;
+	cout<<u<<" "<<v<<" "<<w<<endl;
 
 }
 

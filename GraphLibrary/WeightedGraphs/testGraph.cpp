@@ -1,16 +1,16 @@
 #include"weightedGraph.hh"
+#include"EagerPrimMST.hh"
 #include"LazyPrimMST.hh"
 
 
+#include <boost/algorithm/string.hpp>
+#include <string>
+#include <fstream>
+#include <sstream>
+
+
 int main(void){
-	//PRUEBA CLASE GRAPH:
-	/*Graph mi_grafo;
-	cout<<"Ingrese un vertice"<<endl;
-	int Vertice;
-	cin>>Vertice;
-	cout<<"Los vertices conectados al vertice "<< Vertice<<" son: "<<endl;
-	mi_grafo.print(Vertice);
-	*/
+
 	//PRUEBA CLASE EDGE:
 	/*
 	Edge arista(1,2,0.65);
@@ -19,6 +19,8 @@ int main(void){
 	MiBag bolsa;
 	bolsa.add(arista);
 	bolsa.iterate_Edge();*/
+	
+	/*
 	//PRUEBA CLASE WEIGHTEDGRAPH
 	EdgeWeightedGraph mi_grafo(5);
 	Edge arista(1,2,0.65);
@@ -35,22 +37,50 @@ int main(void){
 	mi_grafo.addEdge(arista5);
 	
 	LazyPrimMST l_mst(mi_grafo);
-	//l_mst.IterableMST().front().toString();
-	
-	/*int vertice;
-	cin>>vertice;
-	mi_grafo.Iterator(vertice)->beginIterate();
-	cout<<mi_grafo.Iterator(vertice)->size_of()<<endl;
+*/
 
-	while (mi_grafo.Iterator(vertice)->isEnd()){
-		mi_grafo.Iterator(vertice)->getEdge().toString();
+// INICIO DE PRUEBA LAZY PRIM MST	
+	int V,E;
+	ifstream fin("tinyEW.txt");
+	char vertex[255]; 
+	char edges[255];
+	fin.getline(vertex,255);//lee la primera linea
+	fin.getline(edges,255);//lee la segunda linea
+	string Ve(vertex); 
+	string Ed(edges);
+	istringstream bv(Ve);
+	istringstream be(Ed);
+	bv>>V;
+	be>>E;
+	char line[255];
+	
+	EdgeWeightedGraph mi_grafo(V);
+	
+	int u,v;
+	float w;
+	for (int i = 0; i<E; i++){
+		fin.getline(line,255);
+		string s(line);
+		vector <string> fields;
+		boost::algorithm::split(fields, s, boost::algorithm::is_any_of(" "));
+		istringstream bu(fields[0]);
+		bu>>u;
+		//cout<<u<<" ";
+		istringstream bv(fields[1]);
+		bv>>v;
+		//cout<<v<<" ";
+		istringstream bw(fields[2]);
+		bw>>w;
+		//cout<<w<<" ";
+		//cout<<" "<<endl;
+		Edge e(u,v,w);
+		mi_grafo.addEdge(e);
 	}
-
-	int Vertice;
-	cin>>Vertice;
-	cout<<"Los vertices conectados al vertice "<< Vertice<<" son: "<<endl;
-	mi_grafo.Iterator(Vertice)->iterate_Edge();
-	*/
+	cout<<"El MST es:"<<endl;
+	EagerPrimMST l_mst(mi_grafo);
+	//LazyPrimMST l_mst(mi_grafo);
 	
+	
+	//cout<<"El peso total del MST es: "<<l_mst.weight()<<endl;
 	return 0;
 }

@@ -4,9 +4,9 @@ EdgeWeightedGraph::EdgeWeightedGraph(int V){
 
 	this->NumV=V;
 	this->NumE=0;
-	adj = new MiBag*[V];
+	adj = new MyBag*[V];
 	for(int v = 0; v<V; v++){
-		adj[v]= new MiBag();
+		adj[v]= new MyBag();
 	}
 		 
 }
@@ -31,7 +31,7 @@ void EdgeWeightedGraph::addEdge(Edge e){
 	NumE++;
 }
 
-MiBag* EdgeWeightedGraph::Iterator(int v){
+MyBag* EdgeWeightedGraph::Iterator(int v){
 	return adj[v];
 }
 

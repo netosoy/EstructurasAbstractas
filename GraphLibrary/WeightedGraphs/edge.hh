@@ -8,14 +8,14 @@ using namespace std;
 class Edge{
 
 private:
+	int u;
 	int v;
-	int w;
-	float weight;
+	float w;
 	
 public:
 	Edge();
-	Edge(int v, int w, float weight);	
-	float Weight();
+	Edge(int u, int v, float w);	
+	float weight();
 	int either();
 	int other(int vertex);
 	int compareTo(Edge that);

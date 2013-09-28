@@ -9,7 +9,7 @@ using namespace std;
 class CompareEdges{
 public: 
 	bool operator()(Edge& e1, Edge& e2){
-		if(e1.compareTo(e2)==1) return true;
+		if(e1.compareTo(e2)==-1) return true;
 		else return false;
 	}
 };
@@ -24,10 +24,12 @@ private:
 	void visit(EdgeWeightedGraph& G, int v);
 public:
 	LazyPrimMST(EdgeWeightedGraph& G);
+	~LazyPrimMST();
+	float weight();
 	queue<Edge> IterableMST(){
 		return mst;
 	}
-
+	
 };
 #endif
 

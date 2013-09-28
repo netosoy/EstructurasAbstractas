@@ -36,5 +36,5 @@ MyBag* EdgeWeightedGraph::Iterator(int v){
 }
 
 void EdgeWeightedGraph::print(int V){
-	adj[V]->iterate_Edge(); // 
+	adj[V]->print_EdgeBag(); // 
 }

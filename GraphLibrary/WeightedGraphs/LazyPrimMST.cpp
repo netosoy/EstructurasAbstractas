@@ -19,18 +19,30 @@ LazyPrimMST::LazyPrimMST(EdgeWeightedGraph& G){
 	}
 }
 
+LazyPrimMST::~LazyPrimMST(){
+	delete [] marked;
+}
 
 void LazyPrimMST::visit(EdgeWeightedGraph& G, int v){
 	marked[v]=true;
 	G.Iterator(v)->beginIterate();
 	while (G.Iterator(v)->isEnd()){
 		Edge e = G.Iterator(v)->getEdge();
-		//e.toString();
 		if(!marked[e.other(v)]){
 			buf.push_back(e);
 			pq.push(buf.back());
 		}
 	}
+}
+
+float LazyPrimMST::weight(){
+	queue<Edge> mst= this->IterableMST();
+	float w = 0;
+	while(!mst.empty()){
+		w += mst.front().weight();
+		mst.pop();
+	}
+	return w;
 }
 
 

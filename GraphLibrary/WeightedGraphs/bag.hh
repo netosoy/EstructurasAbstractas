@@ -22,7 +22,7 @@ public:
 	bool is_empty();
 	void add(int);
 	void add(const Edge&);
-	void iterate_Edge(void);
+	void print_EdgeBag(void);
 	int size_of(void);
 	void beginIterate();
 	Edge getEdge();

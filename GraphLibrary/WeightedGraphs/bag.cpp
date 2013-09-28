@@ -47,15 +47,14 @@ bool MyBag::isEnd(){
 
  
 
-//ITERA BOLSAS CON OBJETOS EDGES--PRUEBA
-void MyBag::iterate_Edge(void) {
+//imprime BOLSAS CON OBJETOS EDGES--PRUEBA
+void MyBag::print_EdgeBag(void) {
 		T_celda * current;
 		current = first_element;  
       while (current!= NULL){
       	current->edge.toString();
  			current = current->next;
       }
-
 } 
 
 bool MyBag::is_empty(){
