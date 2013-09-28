@@ -36,7 +36,6 @@ Edge MyBag::getEdge(){
 	iterator = iterator->next;
 	}
 	position++;
-	cout<<position<<endl;
 	return current->edge;
 }
 

@@ -1,7 +1,8 @@
 #include "bag.hh"
 #include <iostream>
 #include <vector>
-
+#ifndef CLASEEWG
+#define CLASEEWG
 
 class EdgeWeightedGraph{
 
@@ -18,3 +19,4 @@ public:
 	void addEdge( Edge ); //
 	MyBag* Iterator(int v); //
 };
+#endif

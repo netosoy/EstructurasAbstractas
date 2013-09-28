@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+#ifndef CLASEEDGE
+#define CLASEEDGE
 using namespace std;
 
 class Edge{
@@ -23,4 +24,4 @@ public:
 	
 
 };
-
+#endif

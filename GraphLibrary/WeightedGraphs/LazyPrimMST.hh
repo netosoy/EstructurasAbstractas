@@ -3,6 +3,9 @@
 
 using namespace std;
 
+#ifndef CLASELPMST
+#define CLASELPMST
+
 class CompareEdges{
 public: 
 	bool operator()(Edge& e1, Edge& e2){
@@ -18,14 +21,15 @@ private:
 	vector<Edge> buf;
 	priority_queue<Edge, vector<Edge>, CompareEdges> pq;
 	
-	void visit(EdgeWeightedGraph G, int v);
+	void visit(EdgeWeightedGraph& G, int v);
 public:
-	LazyPrimMST(EdgeWeightedGraph G);
+	LazyPrimMST(EdgeWeightedGraph& G);
+	queue<Edge> IterableMST(){
+		return mst;
+	}
 
 };
-
-
-
+#endif
 
 /*
 int main(){

@@ -1,4 +1,5 @@
 #include"weightedGraph.hh"
+#include"LazyPrimMST.hh"
 
 
 int main(void){
@@ -23,16 +24,20 @@ int main(void){
 	Edge arista(1,2,0.65);
 	Edge arista1(1,3,0.64);
 	Edge arista2(4,2,0.70);
-	Edge arista3(1,4,0.70);
-	Edge arista4(3,2,0.70);
-	Edge arista5(0,2,0.70);
+	Edge arista3(1,4,0.32);
+	Edge arista4(3,0,0.3);
+	Edge arista5(0,2,0.1);
 	mi_grafo.addEdge(arista);
 	mi_grafo.addEdge(arista1);
 	mi_grafo.addEdge(arista2);
 	mi_grafo.addEdge(arista3);
 	mi_grafo.addEdge(arista4);
 	mi_grafo.addEdge(arista5);
-	int vertice;
+	
+	LazyPrimMST l_mst(mi_grafo);
+	//l_mst.IterableMST().front().toString();
+	
+	/*int vertice;
 	cin>>vertice;
 	mi_grafo.Iterator(vertice)->beginIterate();
 	cout<<mi_grafo.Iterator(vertice)->size_of()<<endl;
@@ -40,7 +45,7 @@ int main(void){
 	while (mi_grafo.Iterator(vertice)->isEnd()){
 		mi_grafo.Iterator(vertice)->getEdge().toString();
 	}
-	/*
+
 	int Vertice;
 	cin>>Vertice;
 	cout<<"Los vertices conectados al vertice "<< Vertice<<" son: "<<endl;
