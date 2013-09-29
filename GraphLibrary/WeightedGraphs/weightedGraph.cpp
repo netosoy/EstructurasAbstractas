@@ -31,6 +31,8 @@ void EdgeWeightedGraph::addEdge(Edge e){
 	adj[u]->add(e); //
 	adj[v]->add(e); //
 	NumE++;
+	buf.push_back(e);
+	pq.push(buf.back());
 }
 
 MyBag* EdgeWeightedGraph::Iterator(int v){
@@ -40,3 +42,4 @@ MyBag* EdgeWeightedGraph::Iterator(int v){
 void EdgeWeightedGraph::print(int V){
 	adj[V]->print_EdgeBag(); // 
 }
+

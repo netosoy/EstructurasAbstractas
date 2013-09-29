@@ -1,28 +1,20 @@
 #include "EagerPrimMST.hh"
 
 EagerPrimMST::EagerPrimMST(EdgeWeightedGraph &G){
-
-	edgeTo = new Edge[G.V()];
-	distTo = new int[G.V()];
-	marked = new bool[G.V()];
-
-	for(int v=0; v < G.V(); v++)
+	this->V=G.V();
+	edgeTo = new Edge[V];
+	distTo = new int[V];
+	marked = new bool[V];
+	for(int v=0; v < V; v++)
 		distTo[v]=1000000;
-	pq = new MinIndexedPQ(G.V());
-	for(int i=0; i<=G.V();i++) marked[i]=false;
+	pq = new MinIndexedPQ(V);
+	for(int i=0; i<=V;i++) marked[i]=false;
 	
 	distTo[0] = 0.0;
 	pq->insert(0, 0.0);
 	
 	while(!pq->isEmpty()){
 		visit(G, pq->deleteMin());}
-	//prueba:
-	int cost=0;	
-    for(int i=1; i<G.V(); i++)  {
-        cost += distTo[i];
-        cout<<i<<" "<<distTo[i]<<endl;
-    }
-    cout<<"Total cost of MST: "<<cost<<endl;
 }
 
 EagerPrimMST::~EagerPrimMST(){
@@ -43,20 +35,28 @@ void EagerPrimMST::visit(EdgeWeightedGraph &G, int v){
 		Edge e = G.Iterator(v)->getEdge();
 		int w = e.other(v);
 
-		if(marked[w]) {
-
-		continue;}
+		if(marked[w]) continue;
 		if(e.weight() < distTo[w]){
 			edgeTo[w] = e;
 			distTo[w] = e.weight();
-
 			if(pq->contains(w)) 	{
 
 			pq->decreaseKey(w, distTo[w]);
 			}
-			else						pq->insert(w, distTo[w]);	
+		else						pq->insert(w, distTo[w]);	
 
 		}
 	}
+}
+
+
+void EagerPrimMST::printMST(){
+	Edge * e = IterableMST();
+	int cost = 0;
+	for(int i = 1; i<V; i++){
+		e[i].toString();
+		cost += e[i].weight();
+	}
+	cout<<"El peso del MST es: "<<cost<<endl;
 }
 

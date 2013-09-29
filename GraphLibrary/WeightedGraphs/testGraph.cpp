@@ -35,8 +35,7 @@ int main(void){
 	mi_grafo.addEdge(arista3);
 	mi_grafo.addEdge(arista4);
 	mi_grafo.addEdge(arista5);
-	
-	LazyPrimMST l_mst(mi_grafo);
+
 */
 
 // INICIO DE PRUEBA LAZY PRIM MST	
@@ -75,23 +74,25 @@ int main(void){
 		//cout<<" "<<endl;
 		Edge e(u,v,w);
 		/*float u = e.weight();
-		pq.insert(i,u);
 		*/mi_grafo.addEdge(e);
 	}
 	
-	/*while(!pq.isEmpty()){
-		cout << pq.minKey() << endl;
-		cout << pq.minIndex() << endl;
-		pq.deleteMin();	
-		
+	
+	//PRUEBA DE PRIORITY QUEUE QUE ALMACENA TODOS LOS EDGES:
+	
+	/*priority_queue<Edge, vector<Edge>, CompareEdges> pq = mi_grafo.priorityQueue(); 
+	while(!pq.empty()){
+		Edge e = pq.top();
+		e.toString();
+		pq.pop();
 	}*/
 	
-	
+
+	//EagerPrimMST l_mst(mi_grafo);
 	cout<<"El MST es:"<<endl;
-	EagerPrimMST l_mst(mi_grafo);
-	//LazyPrimMST l_mst(mi_grafo);
+	LazyPrimMST l_mst(mi_grafo);
+	l_mst.printMST();
 	
-	
-	//cout<<"El peso total del MST es: "<<l_mst.weight()<<endl;
+	cout<<"El peso total del MST es: "<<l_mst.weight()<<endl;
 	return 0;
 }
