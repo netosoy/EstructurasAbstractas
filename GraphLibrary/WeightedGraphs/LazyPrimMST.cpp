@@ -41,7 +41,6 @@ void LazyPrimMST::printMST(){
 		e.toString();
 		mst.pop();
 	}
-
 }
 
 float LazyPrimMST::weight(){

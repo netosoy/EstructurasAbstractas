@@ -1,6 +1,7 @@
-#include"weightedGraph.hh"
+
 #include"EagerPrimMST.hh"
 #include"LazyPrimMST.hh"
+#include"kruskalMST.hh"
 
 
 #include <boost/algorithm/string.hpp>
@@ -87,12 +88,22 @@ int main(void){
 		pq.pop();
 	}*/
 	
-
-	//EagerPrimMST l_mst(mi_grafo);
-	cout<<"El MST es:"<<endl;
-	LazyPrimMST l_mst(mi_grafo);
-	l_mst.printMST();
+	//PRUEBAS DE ALGORITMOS: 
 	
-	cout<<"El peso total del MST es: "<<l_mst.weight()<<endl;
+	cout<<"El MST Eager Prim:"<<endl;
+	EagerPrimMST mst1(mi_grafo);
+	mst1.printMST();
+	
+	cout<<"El MST Lazy Prim:"<<endl;
+	LazyPrimMST mst2(mi_grafo);
+	mst2.printMST();
+	
+	
+	cout<<"El MST Kruskal:"<<endl;
+	kruskalMST mst3(mi_grafo);
+	mst3.printMST();	
+
+	//cout<<"El peso total del MST es: "<<mst.weight()<<endl;
+	
 	return 0;
 }

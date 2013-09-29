@@ -2,9 +2,11 @@
 
 UF::UF(int N){ //Initialize component id array
 	count = N;
+	size = N;
 	id = new int[N];
-	for(int i=0; i<N; i++)
+	for(int i=0; i<N; i++){
 		id[i] = i;
+	}
 }
 
 UF::~UF(){
@@ -29,7 +31,7 @@ void UF::Union(int p, int q){ //puts p and q in the same component
 	//Nothing to do if p and q are already in the same component 
 	if(pID==qID) return;
 	//rename p's component to q's name 
-	for(int i = 0; i < sizeof(id)/sizeof(*id); i++)
+	for(int i = 0; i < size; i++)
 		if(id[i]==pID) id[i] = qID;
 		count--;
 }

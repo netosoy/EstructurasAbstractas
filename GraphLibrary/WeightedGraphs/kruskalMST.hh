@@ -14,11 +14,12 @@ class kruskalMST{
 	
 public:
 	kruskalMST(EdgeWeightedGraph& G);
-	~kruskalMST();
 	float weight();
 	queue<Edge> IterableMST(){
 		return mst;
 	}
+	void printMST();
+	
 	
 };
 

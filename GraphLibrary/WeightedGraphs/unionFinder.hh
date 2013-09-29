@@ -1,7 +1,11 @@
+#include <iostream>
+#ifndef CLASEUF
+#define CLASEUF
+using namespace std;
 class UF{
 	
 	int* id; 
-	int count;
+	int count, size;
 	
 public:
 
@@ -14,3 +18,5 @@ public:
 	 
 
 };
+
+#endif
