@@ -67,6 +67,14 @@ int MyBag::size_of(){
 
 MyBag::~MyBag(void) {
 
+	T_celda * current;
+	current = first_element;  
+   while (current!= NULL){
+   	T_celda* next = current->next;
+   	delete current;
+   	current = next;
+   }
+
 }
 
 

@@ -10,12 +10,12 @@ class Edge{
 private:
 	int u;
 	int v;
-	float w;
+	int w;
 	
 public:
 	Edge();
-	Edge(int u, int v, float w);	
-	float weight();
+	Edge(int u, int v, int w);	
+	int weight();
 	int either();
 	int other(int vertex);
 	int compareTo(Edge that);

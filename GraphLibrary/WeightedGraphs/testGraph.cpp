@@ -53,7 +53,7 @@ int main(void){
 	bv>>V;
 	be>>E;
 	char line[255];
-	
+	//MinIndexedPQ pq(E);//prueba
 	EdgeWeightedGraph mi_grafo(V);
 	
 	int u,v;
@@ -74,8 +74,19 @@ int main(void){
 		//cout<<w<<" ";
 		//cout<<" "<<endl;
 		Edge e(u,v,w);
-		mi_grafo.addEdge(e);
+		/*float u = e.weight();
+		pq.insert(i,u);
+		*/mi_grafo.addEdge(e);
 	}
+	
+	/*while(!pq.isEmpty()){
+		cout << pq.minKey() << endl;
+		cout << pq.minIndex() << endl;
+		pq.deleteMin();	
+		
+	}*/
+	
+	
 	cout<<"El MST es:"<<endl;
 	EagerPrimMST l_mst(mi_grafo);
 	//LazyPrimMST l_mst(mi_grafo);

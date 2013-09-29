@@ -12,7 +12,9 @@ EdgeWeightedGraph::EdgeWeightedGraph(int V){
 }
 
 EdgeWeightedGraph::~EdgeWeightedGraph(){
+
 	delete adj;
+
 }
 
 int EdgeWeightedGraph::V(){
