@@ -11,7 +11,7 @@ typedef struct node{
 
 class MyQueue{
 private:
-  mynode *first, *last;
+  mynode *head, *last;
   int queue_size;
 public:
   MyQueue(void);

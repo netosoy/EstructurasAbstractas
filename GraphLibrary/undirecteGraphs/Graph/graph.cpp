@@ -8,7 +8,6 @@ MyBag::MyBag(void){
   this->bag_size=0;
 }
 MyBag::~MyBag(void){
-  cout<<"clearing the bag"<<endl;
   Node* aux;
   while(head!=NULL){
     aux=head;
@@ -26,15 +25,101 @@ void MyBag::add(int item){
   head=aux;
   bag_size++;
 }
-bool MyBag::isEmpty(void){return head == NULL;
-}
-int MyBag::getSize(void){return bag_size;
-}
-void MyBag::beginIte(void){iterator=head;
-}
-bool MyBag::hasNext(void){return iterator!=NULL;
-}
 int MyBag::next(void){
+  int item=iterator->getItem();
+  iterator=iterator->next;
+  return item;
+}
+
+//-------MyStack class implementation---------
+
+MyStack::MyStack(void){
+  this->head=NULL;
+  this->iterator=head;
+  this->stack_size=0;
+}
+MyStack::~MyStack(void){
+  Node *aux;
+  while(head!=NULL){
+    aux=head;
+    head=aux->next;
+    delete(aux);
+    aux=NULL;
+  }
+  stack_size=0;
+}
+bool MyStack::push(int item){
+  Node *aux;
+  aux = new Node;
+  aux->addItem(item);
+  aux->next=head;
+  head=aux;
+  stack_size++;
+  return true;
+}
+int MyStack::pull(void){
+  int item;
+  Node *aux=head;  //to eliminate
+  head=aux->next;
+  item=aux->getItem();
+  delete(aux);
+  aux=NULL;
+  stack_size--;
+  return item;
+}
+int MyStack::next(void){
+  int item=iterator->getItem();
+  iterator=iterator->next;
+  return item;
+}
+
+//--------MyQueue class implementation--------
+
+MyQueue::MyQueue(void){
+  this->head=NULL;
+  this->last=NULL;
+  this->iterator=head;
+  this->queue_size=0;
+}
+MyQueue::~MyQueue(void){
+  Node *aux;
+  while(head!=NULL){
+    aux=head;
+    head=aux->next;
+    if(head==NULL)
+      last=head;   //head=last=NULL => queue is empty
+    delete(aux);
+    aux=NULL;
+  }
+  queue_size=0;
+}
+
+bool MyQueue::enqueue(int data){
+  Node *aux;
+  aux = new Node;
+  if(head==NULL)
+    head=aux;
+  aux->addItem(data);
+  aux->next=NULL;
+  if(last!=NULL)
+    last->next=aux;
+  last=aux;
+  queue_size++;
+  return true;
+}
+int MyQueue::dequeue(void){
+  int item;
+  Node *aux=head;
+  item=aux->getItem();
+  head=aux->next;
+  if(head==NULL)
+    last=NULL;
+  delete(aux);
+  aux=NULL;
+  queue_size--;
+  return item;
+}
+int MyQueue::next(void){
   int item=iterator->getItem();
   iterator=iterator->next;
   return item;
@@ -43,7 +128,6 @@ int MyBag::next(void){
 //---------Graph class implementation-----------
 
 Graph::Graph(int vertex){
-  //cout<<"creating a graph of "<<vertex<<" vertices"<<endl;
   this->num_ver=vertex;
   this->num_edg=0;
   this->adj=new MyBag *[vertex];
@@ -51,7 +135,7 @@ Graph::Graph(int vertex){
     adj[i] = new MyBag();
 }
 Graph::~Graph(void){
-  delete adj;
+  delete[] adj;
 }
 int Graph::V(void){return num_ver;}
 int Graph::E(void){return num_edg;}
@@ -61,11 +145,147 @@ void Graph::addEdge(int v, int w){
   adj[w]->add(v);
   num_edg++;
 }
-void Graph::adjV(int vertex){
-  //cout<<"adjacents vertices to "<<vertex<<" vertice"<<endl;
-  adj[vertex]->beginIte();
-  while(adj[vertex]->hasNext()){
-    cout<<adj[vertex]->next()<<", ";
+MyBag* Graph::adjV(int vertex){return adj[vertex];}
+
+//-------Search graph client implementation------
+
+Search::Search(Graph* G, int s){
+  this->graph = G;
+  this->source=s;
+}
+Search::~Search(){}
+bool Search::marked(int v){
+  MyBag* iterator= graph->adjV(source);
+  bool isConnected=false;
+  iterator->beginIte();
+  while(iterator->hasNext()){
+    if(iterator->next()==v)
+      isConnected=true;
   }
-  cout<<endl;
+  return isConnected;
+}
+int Search::count(void){
+  int n=0;
+  for(int i=0; i<graph->V(); i++){
+    if(marked(i))
+      n++;
+  }
+  return n;
+}
+
+//-------Depth First Search class implementation-------
+
+DepthFirstSearch::DepthFirstSearch(Graph& G, int s){
+  this->marked=new bool[G.V()];
+  for(int i=0; i<G.V(); i++){
+    marked[i]=false;
+  }
+  dfs(G,s);
+}
+DepthFirstSearch::~DepthFirstSearch(void){
+  delete[] marked;
+}
+void DepthFirstSearch::dfs(Graph& G, int v){
+  marked[v]=true;
+  count++;
+  MyBag* iterator= G.adjV(v);
+  iterator->beginIte();
+  int ite;
+  while(iterator->hasNext())
+    if(!marked[(ite=iterator->next())])
+      dfs(G,ite);
+}
+
+//-------DFS to find paths, class implementation
+
+DFSfindPaths::DFSfindPaths(Graph& G, int s){
+  this->marked=new bool[G.V()];
+  this->edgeTo=new int[G.V()];
+  this->path=NULL;
+  this->s=s;
+  for(int i=0; i<G.V(); i++){
+    marked[i]=false;
+  }
+  for(int i=0; i<G.V(); i++){
+    edgeTo[i]=0;
+  }
+  dfs(G,s);
+}
+DFSfindPaths::~DFSfindPaths(void){
+  delete[] marked;
+  delete[] edgeTo;
+  delete path;
+}
+void DFSfindPaths::dfs(Graph& G, int v){
+  marked[v]=true;
+  MyBag* iterator= G.adjV(v);
+  iterator->beginIte();
+  int ite;
+  while(iterator->hasNext())
+    if(!marked[(ite=iterator->next())]){
+      edgeTo[ite]=v;
+      dfs(G,ite);
+    }
+}
+MyStack* DFSfindPaths::pathTo(int v){
+  if(!hasPathTo(v))
+    path=NULL;
+  else{
+    path=new MyStack();
+    for(int x=v; x!=s; x=edgeTo[x])
+      path->push(x);
+    path->push(s);
+  }
+  return path;
+}
+
+
+//----Breadth first search for paths class implementation-----
+BreadthFirstPaths::BreadthFirstPaths(Graph& G, int s){
+  this->marked=new bool[G.V()];
+  this->edgeTo=new int[G.V()];
+  this->path=NULL;
+  this->queue=NULL;
+  this->s=s;
+  for(int i=0; i<G.V(); i++){
+    marked[i]=false;
+  }
+  for(int i=0; i<G.V(); i++){
+    edgeTo[i]=0;
+  }
+  bfs(G,s);
+}
+BreadthFirstPaths::~BreadthFirstPaths(void){
+  delete[] marked;
+  delete[] edgeTo;
+  delete path;
+  delete queue;
+}
+void BreadthFirstPaths::bfs(Graph& G, int s){
+  queue=new MyQueue();
+  marked[s]=true;
+  queue->enqueue(s);
+  while(!queue->isEmpty()){
+    int v=queue->dequeue();
+    MyBag* iterator= G.adjV(v);
+    iterator->beginIte();
+    int ite;
+    while(iterator->hasNext())
+      if(!marked[(ite=iterator->next())]){
+	edgeTo[ite]=v;
+	marked[ite]=true;
+	queue->enqueue(ite);
+      }
+  }
+}
+MyStack* BreadthFirstPaths::pathTo(int v){
+  if(!hasPathTo(v))
+    path=NULL;
+  else{
+    path=new MyStack();
+    for(int x=v; x!=s; x=edgeTo[x])
+      path->push(x);
+    path->push(s);
+  }
+  return path;
 }
