@@ -5,13 +5,13 @@ Edge::Edge() : u(0), v(0), w(0){
 }
 
 
-Edge::Edge(int vertex1, int vertex2, float W){
+Edge::Edge(int vertex1, int vertex2, int W){
 	this->u=vertex1;
 	this->v=vertex2;
 	this->w=W;
 }
 
-float Edge::weight(){
+int Edge::weight(){
 	return w;
 }
 

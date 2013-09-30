@@ -12,7 +12,9 @@ EdgeWeightedGraph::EdgeWeightedGraph(int V){
 }
 
 EdgeWeightedGraph::~EdgeWeightedGraph(){
+	cout<<" XXXXXXXXXXXXXXweightGraphXXXXXXXXXXXXX"<<endl;
 	delete adj;
+	cout<<" XXXXXXXXXXXXXXweightGraphXXXXXXXXXXXXX"<<endl;
 }
 
 int EdgeWeightedGraph::V(){
@@ -36,5 +38,5 @@ MyBag* EdgeWeightedGraph::Iterator(int v){
 }
 
 void EdgeWeightedGraph::print(int V){
-	adj[V]->iterate_Edge(); // 
+	adj[V]->print_EdgeBag(); // 
 }

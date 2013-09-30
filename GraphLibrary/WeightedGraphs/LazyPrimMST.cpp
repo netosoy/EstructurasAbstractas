@@ -13,7 +13,6 @@ LazyPrimMST::LazyPrimMST(EdgeWeightedGraph& G){
 		int v = e.either(), w = e.other(v);
 		if (marked[v]&&marked[w]) continue;
 		mst.push(e);
-		e.toString();
 		if (!marked[v]) visit(G, v);
 		if (!marked[w]) visit(G, w);
 	}
@@ -32,6 +31,15 @@ void LazyPrimMST::visit(EdgeWeightedGraph& G, int v){
 			buf.push_back(e);
 			pq.push(buf.back());
 		}
+	}
+}
+
+void LazyPrimMST::printMST(){
+	queue<Edge> mst = IterableMST();
+	while(!mst.empty()){
+		Edge e = mst.front();
+		e.toString();
+		mst.pop();
 	}
 }
 
