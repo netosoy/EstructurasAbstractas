@@ -48,6 +48,10 @@ void DirectedDFS::dfs(Graph& G, int v){
 			dfs(G,iter);
 }
 
+DirectedDFS::~DirectedDFS(){
+	delete marked;
+}
+
 //**********************************
 
 //Directed Cycle algorithm
@@ -56,6 +60,8 @@ DirectedCycle::DirectedCycle(Graph& G){
 	onStack = new bool(G.V());
 	edgeTo = new int(G.V());
 	marked = new bool(G.V());
+	for(int i=0; i < G.V(); i++)
+		marked[i] = false;
 	for(int v = 0; v<G.V(); ++v)
 		if(!marked[v])
 			dfs(G, v);	
@@ -77,9 +83,9 @@ void DirectedCycle::dfs(Graph& G, int v){
 				dfs(G,w);
 			} else if (onStack[w]){
 				for(int x = v; x != w; x = edgeTo[x])
-					cycle.push(x);
-				cycle.push(w);
-				cycle.push(v);
+					cycle.push_front(x);
+				cycle.push_front(w);
+				cycle.push_front(v);
 			}
 		}			
 	}
@@ -90,17 +96,23 @@ bool DirectedCycle::hasCycle(){
 	return !cycle.empty();
 }
 
-std::stack<int> *DirectedCycle::GetCycle(){
+std::deque<int> *DirectedCycle::GetCycle(){
 	return &cycle;
 }
 
+DirectedCycle::~DirectedCycle(){
+	delete onStack;
+	delete edgeTo;
+	delete marked;
+}
 //**********************************
 
 //DepthFirstOrder class description
 
 DepthFirstOrder::DepthFirstOrder(Graph &G){
 	marked = new bool(G.V());
-	
+	for(int i=0; i < G.V(); i++)
+		marked[i] = false;
 	for(int v = 0; v < G.V(); v++)
 		if(!marked[v])
 			dfs(G, v);
@@ -115,10 +127,14 @@ void DepthFirstOrder::dfs(Graph &G, int v){
 	while(Temp->HasNext()){
 		nextVert = Temp->Next();
 		if(!marked[nextVert])
-			dfs(G,v);
+			dfs(G,nextVert);
 	}
 	post.push_back(v);
 	reversePost.push_front(v);	
+}
+
+DepthFirstOrder::~DepthFirstOrder(){
+	delete marked;
 }
 
 //**********************************

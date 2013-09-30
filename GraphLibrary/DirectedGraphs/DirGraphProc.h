@@ -21,6 +21,7 @@ class DirectedDFS{
 		DirectedDFS(Graph& G, int s);
 		DirectedDFS(Graph& G, int *s, int elements);
 		bool Reachable(int v){return marked[v];};
+		~DirectedDFS();
 	private:
 		bool *marked;
 		void dfs(Graph &G, int s);
@@ -30,10 +31,10 @@ class DirectedCycle{
 	public:
 		DirectedCycle(Graph& G);
 		bool hasCycle();
-		std::stack<int> *GetCycle();
-		
+		std::deque<int> *GetCycle();
+		~DirectedCycle();
 	private:
-		std::stack<int> cycle;
+		std::deque<int> cycle;
 		bool *marked;
 		int *edgeTo;
 		bool *onStack;
@@ -46,6 +47,7 @@ class DepthFirstOrder{
 		std::deque<int> *Getpre(){return &pre;}
 		std::deque<int> *Getpost(){return &post;}
 		std::deque<int> *GetreversePost(){return &reversePost;}
+		~DepthFirstOrder();
 	private:
 		bool *marked;
 		std::deque<int> pre;
