@@ -241,6 +241,7 @@ MyStack* DFSfindPaths::pathTo(int v){
 
 
 //----Breadth first search for paths class implementation-----
+
 BreadthFirstPaths::BreadthFirstPaths(Graph& G, int s){
   this->marked=new bool[G.V()];
   this->edgeTo=new int[G.V()];
@@ -288,4 +289,33 @@ MyStack* BreadthFirstPaths::pathTo(int v){
     path->push(s);
   }
   return path;
+}
+
+//---DFS to find connected componentes class implementation---
+
+CC::CC(Graph& G){
+  this->marked=new bool[G.V()];
+  this->id=new int[G.V()];
+  this->count=0;
+  for(int i=0; i<G.V(); i++){
+    marked[i]=false;
+  }
+  for(int i=0; i<G.V(); i++){
+    id[i]=0;
+  }
+}
+CC::~CC(void){
+  delete[] marked;
+  delete[] id;
+}
+void CC::dfs(Graph& G, int v){
+  marked[v]=true;
+  id[v]=count;
+  MyBag* iterator= G.adjV(v);
+  iterator->beginIte();
+  int ite;
+  while(iterator->hasNext())
+    if(!marked[(ite=iterator->next())]){
+      dfs(G,ite);
+    }
 }

@@ -183,3 +183,26 @@ public:
 };
 
 #endif
+
+//-----------------------
+
+#ifndef CC_CLASS
+#define CC_CLASS
+
+class CC{
+private:
+  bool* marked;
+  int* id;
+  int count;
+  void dfs(Graph& G, int v);
+public:
+  CC(Graph& G);
+  ~CC();
+  bool connected(int v, int w){return id[v]==id[w];};
+  int Id(int v){return id[v];};
+  int Count(void){return count;};
+};
+
+#endif
+
+//----------------------
