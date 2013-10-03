@@ -12,7 +12,7 @@ class EagerPrimMST{
 private: 
 	
 	Edge* edgeTo;
-	int* distTo;
+	float* distTo;
 	bool* marked;
 	MinIndexedPQ* pq;
 	int V;

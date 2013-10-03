@@ -1,7 +1,8 @@
 #include <iostream>
 
 class MinIndexedPQ {
-    int NMAX, N, *heap, *index, *keys;
+    int NMAX, N, *heap, *index; 
+    float *keys;
  
     void swap(int i, int j) {
         int t = heap[i]; heap[i] = heap[j]; heap[j] = t;
@@ -33,7 +34,7 @@ public:
     MinIndexedPQ(int NMAX)  {
         this->NMAX = NMAX;
         N = 0;
-        keys = new int[NMAX + 1];
+        keys = new float[NMAX + 1];
         heap = new int[NMAX + 1];
         index = new int[NMAX + 1];
         for(int i = 0; i <= NMAX; i++)
@@ -58,7 +59,7 @@ public:
     }
  
     // associate key with index i; 0 < i < NMAX
-    void insert(int i, int key) {
+    void insert(int i, float key) {
         N++;
         index[i] = N;
         heap[N] = i;
@@ -78,7 +79,7 @@ public:
     }
  
     // decrease the key associated with index i to the specified value
-    void decreaseKey(int i, int key)    {
+    void decreaseKey(int i, float key)    {
         keys[i] = key;
         bubbleUp(index[i]);
     }

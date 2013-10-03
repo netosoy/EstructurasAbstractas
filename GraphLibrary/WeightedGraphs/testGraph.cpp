@@ -42,6 +42,8 @@ int main(void){
 // INICIO DE PRUEBA LAZY PRIM MST	
 	int V,E;
 	ifstream fin("tinyEW.txt");
+	//ifstream fin("1000EWG.txt");
+	//ifstream fin("mediumEWG.txt");	
 	char vertex[255]; 
 	char edges[255];
 	fin.getline(vertex,255);//lee la primera linea
@@ -97,7 +99,6 @@ int main(void){
 	cout<<"El MST Lazy Prim:"<<endl;
 	LazyPrimMST mst2(mi_grafo);
 	mst2.printMST();
-	
 	
 	cout<<"El MST Kruskal:"<<endl;
 	kruskalMST mst3(mi_grafo);

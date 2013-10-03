@@ -1,17 +1,17 @@
 #include"edge.hh"
 
-Edge::Edge() : u(0), v(0), w(0){
+Edge::Edge() : u(0), v(0), w(0.0){
 
 }
 
 
-Edge::Edge(int vertex1, int vertex2, int W){
+Edge::Edge(int vertex1, int vertex2, float W){
 	this->u=vertex1;
 	this->v=vertex2;
 	this->w=W;
 }
 
-int Edge::weight(){
+float Edge::weight(){
 	return w;
 }
 

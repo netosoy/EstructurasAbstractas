@@ -1,6 +1,7 @@
-#include"weightedGraph.hh"
+
 #include"EagerPrimMST.hh"
 #include"LazyPrimMST.hh"
+#include"kruskalMST.hh"
 
 
 #include <boost/algorithm/string.hpp>
@@ -35,13 +36,14 @@ int main(void){
 	mi_grafo.addEdge(arista3);
 	mi_grafo.addEdge(arista4);
 	mi_grafo.addEdge(arista5);
-	
-	LazyPrimMST l_mst(mi_grafo);
+
 */
 
 // INICIO DE PRUEBA LAZY PRIM MST	
 	int V,E;
 	ifstream fin("tinyEW.txt");
+	//ifstream fin("1000EWG.txt");
+	//ifstream fin("mediumEWG.txt");	
 	char vertex[255]; 
 	char edges[255];
 	fin.getline(vertex,255);//lee la primera linea
@@ -74,24 +76,35 @@ int main(void){
 		//cout<<w<<" ";
 		//cout<<" "<<endl;
 		Edge e(u,v,w);
-		float u = e.weight();
-		pq.insert(i,u);
-		mi_grafo.addEdge(e);
+		/*float u = e.weight();
+		*/mi_grafo.addEdge(e);
 	}
 	
-	/*while(!pq.isEmpty()){
-		cout << pq.minKey() << endl;
-		cout << pq.minIndex() << endl;
-		pq.deleteMin();	
-		
+	
+	//PRUEBA DE PRIORITY QUEUE QUE ALMACENA TODOS LOS EDGES:
+	
+	/*priority_queue<Edge, vector<Edge>, CompareEdges> pq = mi_grafo.priorityQueue(); 
+	while(!pq.empty()){
+		Edge e = pq.top();
+		e.toString();
+		pq.pop();
 	}*/
 	
+	//PRUEBAS DE ALGORITMOS: 
 	
-	cout<<"El MST es:"<<endl;
-	EagerPrimMST l_mst(mi_grafo);
-	//LazyPrimMST l_mst(mi_grafo);
+	cout<<"El MST Eager Prim:"<<endl;
+	EagerPrimMST mst1(mi_grafo);
+	mst1.printMST();
 	
+	cout<<"El MST Lazy Prim:"<<endl;
+	LazyPrimMST mst2(mi_grafo);
+	mst2.printMST();
 	
-	//cout<<"El peso total del MST es: "<<l_mst.weight()<<endl;
+	cout<<"El MST Kruskal:"<<endl;
+	kruskalMST mst3(mi_grafo);
+	mst3.printMST();	
+
+	//cout<<"El peso total del MST es: "<<mst.weight()<<endl;
+	
 	return 0;
 }

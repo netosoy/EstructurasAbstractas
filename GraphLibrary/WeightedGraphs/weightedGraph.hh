@@ -9,8 +9,7 @@
 class CompareEdges{
 public: 
 	bool operator()(Edge& e1, Edge& e2){
-		if(e1.compareTo(e2)==-1) return true;
-		else return false;
+		return (e1.compareTo(e2)==-1);
 	}
 };
 

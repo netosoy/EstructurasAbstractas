@@ -1,0 +1,326 @@
+\documentclass[a4paper, 11pt]{report}
+%package import
+\usepackage[utf8]{inputenc}
+
+\usepackage{fancyhdr}
+\usepackage[hmargin=3cm]{geometry}
+\usepackage[spanish]{babel}
+\usepackage{ifthen}
+\usepackage{graphicx}
+\usepackage{tikz}
+    \usetikzlibrary{positioning}
+
+%NewCommands
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\newcommand{\DrawGraph}[5]{
+
+    \begin{scope}[#4]
+    \foreach \pos/\nodo in {{(0,0)/1}, {(2,1)/2}, {(4,1)/3}, {(0,2)/4}, {(3,0)/5}, {(2,-1)/6}, {(4,-1)/7}}
+        \node[vertex] (#3\nodo) at \pos {\nodo};
+
+    \foreach \start/\end in {1/4, 1/2, 1/6,2/5,2/3,2/6,5/7,3/7,4/2,6/7}
+        \path[edge,#5] (#3\start) -- (#3\end);
+
+    \foreach \nodo in {#1}
+        \node[selected vertex] at (#3\nodo) {\nodo};
+
+    \begin{pgfonlayer}{background}
+        \foreach \start/\end in {#2}
+            \path[selected edge,#5] (#3\start) -- (#3\end);
+    \end{pgfonlayer}
+    \end{scope}
+
+}
+
+\newcommand{\DrawWGraph}[5]{
+
+    \begin{scope}[#4]
+    \foreach \pos/\nodo in {{(0,0)/1}, {(2,1)/2}, {(4,1)/3}, {(0,2)/4}, {(3,0)/5}, {(2,-1)/6}, {(4,-1)/7}}
+        \node[vertex] (#3\nodo) at \pos {\nodo};
+
+    \foreach \start/\end/\weight in {1/4/5, 1/2/4, 1/6/16,2/5/20,2/3/5,2/6/8,5/7/14,3/7/3,4/2/1,6/7/8}
+        \path[edge,#5] (#3\start) --node[weight,midway,fill=white] {$\weight$} (#3\end);
+
+    \foreach \nodo in {#1}
+        \node[selected vertex] at (#3\nodo) {\nodo};
+
+    \begin{pgfonlayer}{background}
+        \foreach \start/\end in {#2}
+            \path[selected edge,#5] (#3\start) -- (#3\end);
+    \end{pgfonlayer}
+    \end{scope}
+
+}
+
+\newcommand{\DrawArrow}[1]{
+    \begin{scope}[scale=0.5,#1]
+        \filldraw[arrow] (0,0) -- (2,0) -- +(270:0.5) -- (3,0.5) -- (2,1.5) -- +(270:0.5) -- (0,1) -- cycle;
+    \end{scope}
+}
+
+\newcommand{\DrawAdjMat}{
+	\node[nodo] (1) at (0,0) {$1$};
+    \node[nodo] (2) [below = 0pt of 1] {2};
+    \node[nodo] (3) [below = 0pt of 2] {3};
+    \node[nodo] (4) [below = 0pt of 3] {4};
+	\node[cell] (primero) [right = 0pt of 1] {T};
+    \node[cell] (segundo) [right =0pt of primero] {T};
+    \node[cell] (tercero) [right = 0pt of segundo] {F};
+    \node[cell] (cuarto) [right = 0pt of tercero] {T};
+    \node[nodo] (1c) [above = 0pt of primero] {1};
+	\node[nodo] (2c) [above = 0pt of segundo] {2};
+   	\node[nodo] (3c) [above = 0pt of tercero] {3};
+    \node[nodo] (4c) [right = 0pt of 3c] {4};
+   	\node[cell] (primero2) [right = 0pt of 2] {T};
+    \node[cell] (segundo2) [right =0pt of primero2] {T};
+    \node[cell] (tercero2) [right = 0pt of segundo2] {T};
+    \node[cell] (cuarto2) [right = 0pt of tercero2] {F};
+   	\node[cell] (primero3) [right = 0pt of 3] {F};
+    \node[cell] (segundo3) [right =0pt of primero3] {T};
+    \node[cell] (tercero3) [right = 0pt of segundo3] {T};
+    \node[cell] (cuarto3) [right = 0pt of tercero3] {T};
+	\node[cell] (primero4) [right = 0pt of 4] {T};
+    \node[cell] (segundo4) [right =0pt of primero4] {F};
+    \node[cell] (tercero4) [right = 0pt of segundo4] {T};
+    \node[cell] (cuarto4) [right = 0pt of tercero4] {T};
+
+	\begin{scope}[xshift = 3cm, yshift = -1mm,scale = 1.5]
+    \foreach \pos/\nodo in {{(0,0)/1}, {(1,0)/2}, {(0,-1)/3}, {(1,-1)/4}}
+        \node[vertex_adjMat] (\nodo) at \pos {\nodo};
+
+    \foreach \start/\end in {1/2,1/4,4/3,2/3}
+        \path[edge] (\start) -- (\end);
+    \end{scope}
+}
+
+\newcommand{\DrawAdjList}{
+    \node[nodo] (1) at (0,0) {$1$};
+    \node[nodo] (2) [below = 0pt of 1] {2};
+    \node[nodo] (3) [below = 0pt of 2] {3};
+    \node[nodo] (4) [below = 0pt of 3] {4};
+	\node[cell] (primero) [right = 0pt of 1] {2};
+    \node[cell] (segundo) [right =0pt of primero] {4};
+   	\node[cell] (primero2) [right = 0pt of 2] {1};
+    \node[cell] (segundo2) [right =0pt of primero2] {3};
+   	\node[cell] (primero3) [right = 0pt of 3] {2};
+    \node[cell] (segundo3) [right =0pt of primero3] {4};
+	\node[cell] (primero4) [right = 0pt of 4] {1};
+    \node[cell] (segundo4) [right =0pt of primero4] {3};
+
+	\begin{scope}[xshift = 3cm, yshift = -1mm,scale = 1.5]
+    \foreach \pos/\nodo in {{(0,0)/1}, {(1,0)/2}, {(0,-1)/3}, {(1,-1)/4}}
+        \node[vertex_adjMat] (\nodo) at \pos {\nodo};
+
+    \foreach \start/\end in {1/2,1/4,4/3,2/3}
+        \path[edge] (\start) -- (\end);
+    \end{scope}
+    }
+
+\newcommand{\Deactivate}{\shorthandoff{<>."}}
+\newcommand{\Activate}{\shorthandon{<>."}}
+%Changing space between paragraphs
+\setlength{\parskip}{2mm}
+
+%Setting up fancy package
+\pagestyle{fancy}
+\setlength{\headheight}{15.2pt}
+\renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
+\renewcommand{\sectionmark}[1]{ \markright{#1}{} }
+\fancyhf{}
+
+\fancyhead[C]{
+    \footnotesize
+    \itshape
+    IE-0217% Estructuras Abstractas de Datos y Algoritmos para Ingenier\'ia
+    }
+ 
+\fancyhead[L]{
+    \footnotesize
+    \itshape
+    Librer\'ia de Grafos para C++
+    }
+\fancyhead[R]{
+    \footnotesize
+    \itshape
+    \ifthenelse{\isodd{\value{page}}}{Prof. Francisco Siles Canales}{\rightmark}
+    }
+
+\fancyfoot[R]{\thepage}
+
+
+\begin{document}
+%Tikz styles definitions
+\tikzstyle{vertex_adjMat}=[circle,fill=blue!25,minimum size=10pt,inner sep=2pt,font = \small]
+\tikzstyle{cell} = [shape=rectangle,minimum size=15pt, inner sep=0pt,draw=black!50,fill=white, font=\scriptsize]
+\tikzstyle{nodo} = [shape=rectangle,minimum size=15pt, inner sep=0pt,fill=white, font=\footnotesize]
+
+\tikzstyle{vertex}=[circle,fill=blue!25,minimum size=10pt,inner sep=0pt,font = \tiny]
+\tikzstyle{selected vertex} = [vertex, fill=red!24]
+\tikzstyle{edge} = [draw,thick,-]
+\tikzstyle{weight} = [font=\scriptsize]
+\tikzstyle{selected edge} = [draw,line width=3pt,-,red!50]
+\tikzstyle{ignored edge} = [draw,line width=3pt,-,black!20]
+\tikzstyle{arrow} = [fill=red!80, draw = black!20]
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+%Creating Title
+\begin{titlepage}
+    \begin{center}
+       %ordenar los archivos \includegraphics[width=0.4\textwidth]{logo-eie.jpg}\\[1.5cm]
+        \HRule{0.5mm}\\[0.12cm]
+        \textsc{\huge Librer\'ia de Grafos para C++}\\[0.2cm]
+        \HRule{0.8mm}\\[1.7cm]
+        \begin{flushright}
+        \begin{tabular}{l c}
+            Hugo Z\'u\~niga C. & A96988 \\
+            Ernesto C\'espedes M. & AXXXXX \\
+            Diego \'Alvarez A. & AXXXXX \\
+        \end{tabular}
+        \end{flushright}
+
+    \end{center}
+\end{titlepage}
+%*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*
+%                   Documento
+%*/*/*/*/*/*/*/*/*/*//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*
+
+\chapter{Marco Te\'orico}
+\section{Introducci\'on a los Grafos}
+Un grafo es la representaci\'on abstracta de un conjunto de objetos, los cuales est\'an conectados a trav\'es de enlaces. Los objetos interconectados se representan mediante una estructura denominada v\'ertice y a los enlaces se les denomina bordes. La representaci\'on  gr\'afica de un grafo se hace mediante un conjunto de puntos (v\'ertices) unidos por un conjunto de l\'ineas que representan los bordes, un ejemplo de esto se observa en la figura \ref{EjGrafo}.
+
+\begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}
+        \DrawGraph{}{}{a}{}{}
+    \end{tikzpicture}
+    \caption{Representaci\'on Gr\'afica de un Grafo}
+    \label{EjGrafo}
+\end{figure}
+
+Los grafos son estructuras de datos que tienen aplicaciones en muchas \'areas del desarrollo humano, algunas de ellas son:
+
+\begin{itemize}
+    \item \emph{Desarrollo de Circuitos Integrados:} Los circuitos electr\'onicos constan de una gran cantidad de componentes, los cuales est\'an interconectados mediante l\'ineas de metal. Debido a la complexidad de los dise\~nos es necesario contar con una plataforma la cual permita hacer solicitudes sobre la interconexi\'on de los componentes.
+    \item \emph{Transacciones Comerciales:} Las instituciones financieras compran y venden acciones en la bolsa. En este caso el grafo permite representar la transferencia de dinero y bienes entre instituciones o instituciones y compradores.
+    \item \emph{Redes de Computadoras:} Las redes de computadoras consisten de un conjunto de computadoras interconectadas, las cuales env\'ian y reciben mensajes de varios tipos. En este caso el grafo representa los nodos del sistema y las v\'ias de comunicaci\'on que hay entre ellas. 
+\end{itemize}
+
+\subsection{Tipos de Grafos}
+Dentro del sistema de grafos existen diversas subclasificaciones, las cuales representan las distintas estructuras que se pueden obtener con el objetivo de representar las relaciones entre los objetos. Las clasificaciones en las cuales se basa este proyecto son:
+
+\begin{itemize}
+    \item Grafos no Dirigidos
+    \item Grafos Dirigidos
+    \item Grafos con Peso
+\end{itemize}
+
+\subsubsection{Grafos no Dirigidos}
+Los grafos no dirigidos son estruturas de datos que representan un sistema en el cual los enlaces permiten la conexi\'on bidireccional entre los v\'ertices, la representaci\'on gr\'afica de este tipo se observa en la figura \ref{EjGrafo}. Asimismo dentr de la estructura de datos, existen subestructuras que permiten encontrar propiedades importantes de los grafos.
+
+La primera de estas subestructuras es el <<path>> o camino, el cual es una secuencia de v\'ertices conectados por enlaces. De esta manera existen caminos simples, los cuales cuentan con todos los v\'ertices distintos y existen caminos c\'iclicos, en los cuales se repite el primer y \'ultimo v\'ertice. Esta definici\'on es una de las m\'as importantes en la teor\'ia de grafos, ya que uno de los par\'ametros de mayor inter\'es de un grafo es la capacidad de encontrar un camino que interconecte dos v\'ertices y determinar si es el \'optimo.
+
+Otra estructura importante relacionada con los grafos es el \'arbol, el cual es un subgrafo que contiene todos los v\'ertices pertenecientes al grafo. La importancia de esta estructura radica en su utilizaci\'on en los algoritmos de procesamiento de grafos, esta representaci\'on permite obtener informaci\'on importante acerca de la conectividad y estructura del grafo.
+
+\subsubsection{Grafos Dirigidos}
+La singularidad que tienen los grafos dirigidos es que los enlaces entre los v\'ertices son unidireccionales a diferencia de los grafos no dirigidos. Esto implica que los enlaces pueden ser atravesados en una direcci\'on \'unicamente.
+
+De esta manera existen tambi\'en la definici\'on de camino simple y camino c\'iclico para los grafos dirigidos. La diferencia principal radica en la limitaci\'on de que el hecho de que exista un camino que comunique dos v\'ertices en una direcci\'on no implica que exista un camino que los comunique de manera inversa.
+
+\begin{figure}[!h]
+    \centering
+    \Deactivate
+    \begin{tikzpicture}
+        \DrawGraph{}{}{a}{}{->}
+    \end{tikzpicture}
+    \Activate
+    \caption{Representaci\'on Gr\'afica del Grafo Dirigido}
+    \label{EjGrafoDirigido}
+\end{figure}
+
+\subsubsection{Grafos con Peso}
+En realidad los grafos con peso se pueden basar en cualquiera de las dos estruturas discutidas anteriormente, la diferencia principal es que se le agrega informaci\'on a los enlaces, de manera que se puedan adaptar al modelado de sistemas m\'as amplios.
+
+\begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}
+        \DrawWGraph{}{}{a}{}{}
+    \end{tikzpicture}
+    \caption{Representaci\'on Gr\'afica del Grafo con Peso}
+    \label{EjGrafoPeso}
+\end{figure}
+
+\subsection{Estructura de Datos}
+Dentro del estudio de la eficiencia de los algoritmos, se toman en cuenta dos par\'ametros el tiempo y espacio de ejecuci\'on. El primero hace referencia al tiempo que toma completar el procesamiento del algoritmo, mientras que el segundo trata sobre la cantidad de espacio que ocupan todas las estructuras y funciones que son necesarias para la ejecuci\'on del algoritmo.
+
+En consideraci\'on de estos par\'ametros es importante determinar una estructura de datos para la representaci\'on de grafos, la cual permita obtener la flexibilidad necesaria de manera que se optimicen tanto el tiempo de ejecuci\'on de los algoritmos como el espacio de almacenamiento. Para alcanzar este fin se estudi\'o tres propuestas diferentes.
+
+\begin{itemize}
+    \item Matriz de Adyacencia
+    \item Arreglo de Enlaces
+    \item Lista de Adyacencias
+\end{itemize} 
+
+\subsubsection{Matriz de Adyacencia}
+
+La matriz de adyacencia es una configuraci\'on, en la cual el grafo se representa mediante una matriz de N filas y N columnas, donde N representa la cantidad de v\'ertices presentes en el grafo. Para reprecentar los enlaces entre v\'ertices, se asigna un valor booleano a la celda representado por la fila y la columna de los nodos conectados, as\'i por ejemplo el siguiente es un ejemplo de una matriz de adyacencia de 4 v\'ertices. 
+
+\begin{figure}[!h]
+	\centering
+	\begin{tikzpicture}
+		\DrawAdjMat
+	\end{tikzpicture}
+    \caption{Representaci\'on de un grafo mediante una matriz de adyacencia}
+    \label{AdjMat}
+\end{figure}
+
+La ventaja de la configuraci\'on es que permite una r\'apida inserci\'on de nuevas conexiones, sin embargo el espacio que ocupa es el cuadrado de la cantidad de v\'ertices, por lo cual esta opci\'on es descartable.
+
+\subsubsection{Arreglo de Enlaces}
+El arreglo de enlaces es un sistema, el cual parte de un tipo de dato denominado Enlace, el cual contiene dos variables instanciadas (los v\'ertices conectados). De esta manera es sencillo crear nuevas uniones, sin embargo el tratamiento de los algoritmos para este tipo de organizaci\'on es significativamente m\'as dif\'icil, ya que hay que revisar todos las instancias de <<Enlace>> para poder extraer informaci\'on relevante del grafo.
+
+\subsubsection{Lista de Adyacencias}
+La lista de adyacencias es una configuraci\'on en la cual se crea una lista de todos los v\'ertices que est\'an conectados a un nodo en particular, adem\'as se crea una lista con los punteros a las listas de adyacencias. Una representaci\'on de una lista de adyacencias se observa en la figura \ref{ListAdj}
+
+\begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}
+        \DrawAdjList
+    \end{tikzpicture}
+    \caption{Representaci\'on de la lista de adyacencias}
+    \label{ListAdj}
+\end{figure}
+
+Esta estructura tiene una complejidad espacial de \emph{E+V}, lo cual es menor que cualquiera de las dos opciones presentadas anteriormente, asimismo el tiempo computacional de procesamiento debe ser menor debido a que en caso de que se desee iterar a trav\'es delos nodos adyacentes, s\'olo se debe revisar los nodos adyacentes, lo cual reduce el tiempo de procesamiento. 
+
+\section{Algoritmos;.;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; de Procesamiento de Grafos}
+\newpage
+\subsection{Algoritmos b\'asicos:}
+\newpage
+\subsection{Algoritmos enfocados en grafos dirigidos}
+\newpage
+\subsection{Algoritmos para la b\'usqueda de \'arboles de expansi\'on m\'inima}
+Un grafo de aristas con peso o edge-weighted graph es un modelo de grafo donde se asocia pesos o costos con cada arista. Por ejemplo en el diseño de un circuito electrónico a veces se necesita hacer que los pines  de muchos componentes sean eléctricamente equivalentes, cableandolos juntos. Para conectar un grupo de n pines, se puede usar un arreglo de n-1 cables, cada uno conectando 2 pines. De todos estos arreglos, el que utiliza la menor cantidad de cable es casi siempre el más deseado. 
+
+Este problema de cableado se puede modelar con un grafo conectado, indirecto G = (V,E), donde V es un grupo de nodos o pines, E representa un grupo de posibles interconecciones entre pares de nodos, y por cada arista (\textit{u,v}) $\in$  E, tenemos un peso $\omega$(\textit{u,v}) especificando el costo(cantidad de cable requerido) para conectar \textit{u} y \textit{v}. Luego lo que se desea es encontrar un subgrupo acíclico T$ \subseteq $E que conecte todos los vértices y cuyo peso total:
+
+\begin{equation}
+ \omega (T) =  \sum_{(u,v) \in T}  \omega (u,v) 
+\end{equation}
+
+sea minimizado. Ya que T es acíclico y conecta todos los vértices, este debe formar un árbol, al cual se le llama árbol de expansión, ya que se expande por todo los vértices del grafo G. 
+
+En esta librería se implementaron dos algoritmos para resolver el problema de los arboles de expansión mínima: el de Kruskal y el de Prim. Cada uno de estos algoritmos es una variación del algoritmo de greedy, el cual se definirá más adelante. 
+
+A continuación se definirá como crece un árbol de mínima expansión. Asumiendo que que tenemos un grafo, conectado e indirecto G = (V,E) con un peso $\omega: E \longrightarrow  \Re$, y queremos encontrar el árbol de expansión mínima para G. La estrategia de greedy sigue el siguiente método genérico, el cual aumenta el MST(por sus siglas en inglés) una arista a la vez. Este maneja un conjunto de aristas A, manteniendo el siguiente ciclo invariante: Antes de cada iteración, A es un subconjunto de algún árbol de expansión mínima.
+
+En cada paso, se determina una arista (\textit{u,v}) la cual puede ser agregada a A sin violar la declaración anterior, en el sentido que A$\cup${(\textit{u,v})} también es un subconjunto de un árbol de mínima expansión. A esta arista le podemos llamar \textit{arista segura} para A, ya que podemos agregarla a A mientras que se mantiene el ciclo invariante.
+
+
+
+
+
+\newpage
+\subsection{Algoritmos para la b\'usqueda de la ruta m\'as corta}
+\end{document}

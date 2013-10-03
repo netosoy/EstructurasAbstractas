@@ -3,10 +3,10 @@
 EagerPrimMST::EagerPrimMST(EdgeWeightedGraph &G){
 	this->V=G.V();
 	edgeTo = new Edge[V];
-	distTo = new int[V];
+	distTo = new float[V];
 	marked = new bool[V];
 	for(int v=0; v < V; v++)
-		distTo[v]=1000000;
+		distTo[v]=1000000.0;
 	pq = new MinIndexedPQ(V);
 	for(int i=0; i<=V;i++) marked[i]=false;
 	
@@ -52,7 +52,7 @@ void EagerPrimMST::visit(EdgeWeightedGraph &G, int v){
 
 void EagerPrimMST::printMST(){
 	Edge * e = IterableMST();
-	int cost = 0;
+	float cost = 0;
 	for(int i = 1; i<V; i++){
 		e[i].toString();
 		cost += e[i].weight();
