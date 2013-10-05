@@ -349,8 +349,82 @@ De esta manera T' debe ser un árbol de expansión mínima también, además ten
 
 El ciclo \textbf{while} en las líneas 2-4, del seudocódigo anterior se ejecuta V-1 veces. Inicialmente cuando A =$ \emptyset$, hay V árboles en $G_A = (G,A)$, y cada iteración reduce ese número en 1. Cuando el bosque contiene un solo árbol, el método termina. Ambos algoritmos implementados siguen esta regla, solo que cada uno usa una regla específica para encontrar la arista segura de la línea 3.
 
+\subsubsection{Clase WeightedEdge}
 
-Para representar un grafo de aristas con peso se procedió a extender la clase graph básica, en una representación de matriz de adyacencia, la cual puede contener aristas con peso en lugar de valores booleanos, las cuales están formadas por los nodos y su peso.
+Para representar un grafo de aristas con peso se procedió a extender la clase graph básica, en una representación de matriz de adyacencia, la cual puede contener aristas con peso en lugar de valores enteros, las cuales están formadas por los nodos y su peso. Para esto se creó una clase Edge y WeightedGraph que cuentan con los siguientes métodos:
+
+
+\begin{table}[h]\center
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|c|}{\textbf{API Clase Edge}}                                                                                                            \\ \hline
+Edge(int u, int v, float w)    & \begin{tabular}[c]{@{}c@{}}método constructor, inicializa la arista a \\ partir de sus nodos u, v y peso w\end{tabular} \\ \hline
+float weight()                 & devuelve el peso de la arista                                                                                           \\ \hline
+int either()                   & \begin{tabular}[c]{@{}c@{}}devuelve cualquiera de los nodos \\ que conforman la arista\end{tabular}                     \\ \hline
+int other(int v)               & devuelve el nodo u                                                                                                      \\ \hline
+int compareTo(Edge e)          & compara el peso w con el de la arista e                                                                                 \\ \hline
+void toString()                & imprime los nodos y el peso de la arista                                                                                \\ \hline
+Edge\& operator=(const Edge\&) & \begin{tabular}[c]{@{}c@{}}sobrecarga del operador asignación para \\ los objetos Edge\end{tabular}                     \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]\center
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|c|}{\textbf{API Clase WeightedGraph}}                                                                                                               \\ \hline
+WeightedGraph(int V) & \begin{tabular}[c]{@{}c@{}}método constructor, inicializa y reserva \\ memoria para un grafo de V vértices\end{tabular}                       \\ \hline
+int V()              & devuelve el número de vértices del grafo                                                                                                      \\ \hline
+int E()              & devuelve el número de aristas del grafo                                                                                                       \\ \hline
+int other(int v)     & devuelve el nodo u                                                                                                                            \\ \hline
+void addEdge(Edge e) & \begin{tabular}[c]{@{}c@{}}agrega un objeto edge al grafo y a la \\ lista de adyacencia\end{tabular}                     \\ \hline
+\end{tabular}
+\end{table}
+
+Cada bolsa de la lista de adyacencia es una lista enlazada, respetando la la implementación de los algoritmos de grafos indirectos y directos, cuyo contenido referencia a objetos Edge, o aristas que se conectan a el nodo $v$. Se selecciona esta estructura debido a que logra un código más compacto y limpio, sin embargo conyeva un pequeño precio, cada nodo de la lista de adyacencia, tiene una referencia a un objeto Edge con información redundante. Sin embargo tenemos solo una copia de cada uno. 
+
+El tipo de datos que analizarán los programas tienen la siguiente estructura:
+
+\begin{verbatim}
+8
+16
+4 5 0.35
+4 7 0.37
+5 7 0.28
+0 7 0.16
+1 5 0.32
+0 4 0.38
+2 3 0.17
+1 7 0.19
+0 2 0.26
+1 2 0.36
+1 3 0.29
+2 7 0.34
+6 2 0.40
+3 6 0.52
+6 0 0.58
+6 4 0.93
+\end{verbatim}
+Donde en la primera fila se especifica el número de vértices, en la segunda, el número de aristas, y en las siguientes filas se define cada arista, en las cuales primero se muestran los dos nodos, que conforman la arista y el tercer número corresponde al peso. A este tipo de grafo se le llama Euclidiano, ya que todos sus vértices son puntos que se encuentran en un mismo plano. El objetivo es encontrar el MST de tal tipo de grafo en una cantidad de tiempo razonable. Obteniendo un resultado como el siguiente:
+\begin{verbatim}
+El MST del grafo anterior es:
+0-7 0.16
+1-7 0.19
+0-2 0.26
+2-3 0.17
+5-7 0.28
+4-5 0.35
+6-2 0.40
+su peso total es: 1.81
+\end{verbatim}
+
+
+
+
+
+
+
+
+
 
 \subsubsection{Algoritmo de Prim}
 
@@ -359,7 +433,7 @@ Este algoritmo es un caso especial del método genérico mostrado en la sección
 \textbf{Estructuras de datos:} Estas van a representar los vértices en el árbol, las aristas en el árbol, y las aristas que cruzan los cortes, de la siguiente manera:
 \begin{itemize}
 \item \textit{Vértices en el árbol}: Utilizamos un array booleano indexado llamado marked[], donde marked[v] es true si v está en el árbol.
-\item \textit{Aristas en el árbol}: Se pueden utilizar dos estructuras: una cola llamada mst para almacenar objetos arista
+\item \textit{Aristas en el árbol}: Se pueden utilizar dos estructuras: una cola llamada mst para almacenar objetos arista \&
 \end{itemize}
 
 
