@@ -1,7 +1,9 @@
 \documentclass[a4paper, 11pt]{report}
 %package import
+\usepackage{algpseudocode}
+\usepackage{verbatim}
 \usepackage[utf8]{inputenc}
-
+\usepackage{listings}
 \usepackage{fancyhdr}
 \usepackage[hmargin=3cm]{geometry}
 \usepackage[spanish]{babel}
@@ -294,14 +296,14 @@ La lista de adyacencias es una configuraci\'on en la cual se crea una lista de t
 
 Esta estructura tiene una complejidad espacial de \emph{E+V}, lo cual es menor que cualquiera de las dos opciones presentadas anteriormente, asimismo el tiempo computacional de procesamiento debe ser menor debido a que en caso de que se desee iterar a trav\'es delos nodos adyacentes, s\'olo se debe revisar los nodos adyacentes, lo cual reduce el tiempo de procesamiento. 
 
-\section{Algoritmos;.;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; de Procesamiento de Grafos}
+\section{Algoritmos de Procesamiento de Grafos}
 \newpage
 \subsection{Algoritmos b\'asicos:}
 \newpage
 \subsection{Algoritmos enfocados en grafos dirigidos}
 \newpage
 \subsection{Algoritmos para la b\'usqueda de \'arboles de expansi\'on m\'inima}
-Un grafo de aristas con peso o edge-weighted graph es un modelo de grafo donde se asocia pesos o costos con cada arista. Por ejemplo en el diseño de un circuito electrónico a veces se necesita hacer que los pines  de muchos componentes sean eléctricamente equivalentes, cableandolos juntos. Para conectar un grupo de n pines, se puede usar un arreglo de n-1 cables, cada uno conectando 2 pines. De todos estos arreglos, el que utiliza la menor cantidad de cable es casi siempre el más deseado. 
+Un grafo de aristas con peso o edge-weighted graph es un modelo de grafo donde se asocia pesos o costos con cada arista. Se pueden aplicar en muchos modelos naturales, por ejemplo un mapa de rutas aéreas, donde los pesos pueden representar distancias, además por ejemplo en el diseño de un circuito electrónico a veces se necesita hacer que los pines  de muchos componentes sean eléctricamente equivalentes, cableandolos juntos. Para conectar un grupo de n pines, se puede usar un arreglo de n-1 cables, cada uno conectando 2 pines. De todos estos arreglos, el que utiliza la menor cantidad de cable es casi siempre el más deseado. 
 
 Este problema de cableado se puede modelar con un grafo conectado, indirecto G = (V,E), donde V es un grupo de nodos o pines, E representa un grupo de posibles interconecciones entre pares de nodos, y por cada arista (\textit{u,v}) $\in$  E, tenemos un peso $\omega$(\textit{u,v}) especificando el costo(cantidad de cable requerido) para conectar \textit{u} y \textit{v}. Luego lo que se desea es encontrar un subgrupo acíclico T$ \subseteq $E que conecte todos los vértices y cuyo peso total:
 
@@ -309,15 +311,56 @@ Este problema de cableado se puede modelar con un grafo conectado, indirecto G =
  \omega (T) =  \sum_{(u,v) \in T}  \omega (u,v) 
 \end{equation}
 
-sea minimizado. Ya que T es acíclico y conecta todos los vértices, este debe formar un árbol, al cual se le llama árbol de expansión, ya que se expande por todo los vértices del grafo G. 
+sea minimizado. Ya que T es acíclico y conecta todos los vértices, este debe formar un árbol, al cual se le llama árbol de expansión mínima, ya que se expande por todo los vértices del grafo G como se muestra en la figura ref0. 
 
 En esta librería se implementaron dos algoritmos para resolver el problema de los arboles de expansión mínima: el de Kruskal y el de Prim. Cada uno de estos algoritmos es una variación del algoritmo de greedy, el cual se definirá más adelante. 
 
-A continuación se definirá como crece un árbol de mínima expansión. Asumiendo que que tenemos un grafo, conectado e indirecto G = (V,E) con un peso $\omega: E \longrightarrow  \Re$, y queremos encontrar el árbol de expansión mínima para G. La estrategia de greedy sigue el siguiente método genérico, el cual aumenta el MST(por sus siglas en inglés) una arista a la vez. Este maneja un conjunto de aristas A, manteniendo el siguiente ciclo invariante: Antes de cada iteración, A es un subconjunto de algún árbol de expansión mínima.
+A continuación se definirá como crece un árbol de mínima expansión. Asumiendo que que tenemos un grafo, conectado e indirecto G = (V,E) con un peso $\omega: E \longrightarrow  \Re$, y queremos encontrar el árbol de expansión mínima para G. La estrategia de greedy sigue el siguiente método genérico, el cual aumenta el MST(por sus siglas en inglés) una arista a la vez. Este maneja un conjunto de aristas A, manteniendo el siguiente ciclo invariante: \textbf{Antes de cada iteración, A es un subconjunto de algún árbol de expansión mínima.}
 
 En cada paso, se determina una arista (\textit{u,v}) la cual puede ser agregada a A sin violar la declaración anterior, en el sentido que A$\cup${(\textit{u,v})} también es un subconjunto de un árbol de mínima expansión. A esta arista le podemos llamar \textit{arista segura} para A, ya que podemos agregarla a A mientras que se mantiene el ciclo invariante.
 
+\textbf{Seudocódigo del MST(G,$ \omega$) Genérico: }
 
+1- A=$ \emptyset$\\
+2- \textbf{while} (A no forma un arbol de expansion)\\
+3- 	\indent	encuentre una arista ($u,v$) que sea \textit{segura} para A\\ 4- 	\indent	A=A$\cup${($u,v$)}\\
+5- \textbf{return} A\\
+
+Utilizamos este ciclo invariante de la siguiente forma:
+
+\textbf{Inicialización:} La línea 1 muestra las condiciones iniciales, en las cuales el conjunto A trivialmente satisface la condición del ciclo invariante.  
+\textbf{Mantenimiento:} El ciclo se mantiene invariante, es decir cumpliendo la iteración en las líneas 2 a 4, agregando solo aristas seguras a A.
+\textbf{Terminación:} Todos las aristas agregadas a A están en un árbol de expansión mínima, por lo tanto el conjunto A devuelto en la línea 5 debe ser el árbol de expansión mínima.
+
+Obviamente la parte truculenta se encuentra tratando de encontrar la arista que es segura, en la línea 3. Una debe existir, ya que desde que la línea 3 es ejecutada, la invarianza dicta que hay un árbol de expansión T el cual A$ \subseteq $T. Dentro del ciclo \textbf{while}, A debe ser un subconjunto de T, y por lo tanto debe haber una arista ($u,v$) $ \in $T, tal que ($u, v$) $\notin$ A y ($u, v$) es seguro para A.
+
+Para definir una arista segura, primero debemos definir ciertos conceptos. Un \textbf{corte} (S, V-S) de un grafo indirecto G = (V,E) es una partición de V. La figura ref1 ilustra esta idea. Decimos que un corte \textbf{respeta} un conjuto A de aristas, si ninguna arista en A cruza el corte. Una arista ($u,v$) $\in$ E \textbf{cruza} el corte (S, V-S) si uno de sus extremos está en S y el otro en V-S. Una arista es una \textbf{arista liviana} cruzando un corte, si su peso es el mínimo de todas las aristas que también lo cruzan.
+
+Una regla para reconozer una arista segura es la siguiente: Sea G = (V,E) un grafo indirecto y conectado, con valores de peso reales $\omega$ definidos en E. Sea A un subconjunto de E dentro de un árbol mínimo de expansión para G, sea (S,V-S) cualquier corte de G que respeta a A, y sea ($u, v$) una arista liviana cruzando (S, V-S). Entonces ($u, v$) es segura para A.
+
+Una prueba de la regla anterior es la siguiente:
+Sea T un árbol de expansión mínima que incluye A, y asuma que T no contiene la arista liviana ($u,v$), de otra manera terminaríamos aquí. Debemos construir otro árbol de expansión mínima T'que incluya A$\cup${($u,v$)} utilizando una técnica de "corte y pegue", mostrando así que ($u,v$) es segura para A.
+
+La arista ($u, v$) forma un ciclo con las aristas en el camino $p$ de $u$ a $v$ en T, como se ilustra en la figura ref2. Los vértices negros están en S y los blancps en V-S. Las aristas en A están sombreadas, y ($u, v$) es una arista liviana cruzando el corte (S, V-S). La arista ($x, y$) yace en el camino $p$ de $u$ a $v$ en T y no está en A. Para formar un árbol de expansión mínima T'que contenga ($u, v$), se remueve la arista ($x, y$) de T y se agrega ($u, v$), por lo tanto:
+\begin{equation}
+\omega(T') = \omega(T) - \omega(x,y) + \omega(u,v)\leq \omega(T) 
+\end{equation}
+De esta manera T' debe ser un árbol de expansión mínima también, además tenemos que A $\subseteq$ T', y A $\subseteq$ T además ($x, y$) $\notin$ A; en consecuencia A$\cup {(u, v)} \subseteq T'$, entonces ($u, v$) es seguro para A.
+
+El ciclo \textbf{while} en las líneas 2-4, del seudocódigo anterior se ejecuta V-1 veces. Inicialmente cuando A =$ \emptyset$, hay V árboles en $G_A = (G,A)$, y cada iteración reduce ese número en 1. Cuando el bosque contiene un solo árbol, el método termina. Ambos algoritmos implementados siguen esta regla, solo que cada uno usa una regla específica para encontrar la arista segura de la línea 3.
+
+
+Para representar un grafo de aristas con peso se procedió a extender la clase graph básica, en una representación de matriz de adyacencia, la cual puede contener aristas con peso en lugar de valores booleanos, las cuales están formadas por los nodos y su peso.
+
+\subsubsection{Algoritmo de Prim}
+
+Este algoritmo es un caso especial del método genérico mostrado en la sección anterior. Tiene la propiedad de que cada arista en el conjunto A siempre forma un solo árbol. Como lo muestra la figura ref3, el árbol empieza de un vértice raiz arbitrario $r$ y crece hasta que se expanda por todos los vértices en V. Cada paso agrega una arista liviana al árbol A, que lo conecta con un vértice aislado, la cual es segura para A; por lo cuando el algoritmo termina, A forma un árbol de expansión mínima. 
+
+\textbf{Estructuras de datos:} Estas van a representar los vértices en el árbol, las aristas en el árbol, y las aristas que cruzan los cortes, de la siguiente manera:
+\begin{itemize}
+\item \textit{Vértices en el árbol}: Utilizamos un array booleano indexado llamado marked[], donde marked[v] es true si v está en el árbol.
+\item \textit{Aristas en el árbol}: Se pueden utilizar dos estructuras: una cola llamada mst para almacenar objetos arista
+\end{itemize}
 
 
 
