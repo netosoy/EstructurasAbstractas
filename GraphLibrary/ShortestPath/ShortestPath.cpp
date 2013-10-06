@@ -40,21 +40,24 @@ std::deque<DirectedEdge> *Djikstra::pathTo(int v){
     return path;
 }
 
-/*#########################################################
- *##########################Bellman Ford Definition########
- *########################################################*/
+/*######################################################################
+ *################## BellmanFord ######################################
+ *####################################################################*/
 
-BellmanFord::BellmanFord(EdgeWeightedDigraph &G, int s){
-    distTo = new double(G.GetV());
-    size = G.GetV();
-    edgeTo = new DirectedEdge[G.GetV()];
-    onQ = new bool(G.GetV());
-    for(int v = 0; v<G.GetV();++v)
+BellmanFord::BellmanFord(EdgeWeightedDigraph &G, int s) :
+    distTo(G.GetV()),
+    edgeTo(G.GetV()),
+    onQ(G.GetV())
+{
+    cost = 1;
+    for(int v = 0; v < G.GetV(); ++v){
         distTo[v] = INFINITY;
-    distTo[s]= 0.0;
+        onQ[v] = false;
+    }
+    distTo[s] = 0.0;
     queue.push_back(s);
-    onQ[s]=true;
-    while(!queue.empty()&& !hasNegativeCycle()){
+    onQ[s] = true;
+    while(!queue.empty() && !hasNegativeCycle()){
         int v = queue.front();
         queue.pop_front();
         onQ[v] = false;
@@ -63,14 +66,14 @@ BellmanFord::BellmanFord(EdgeWeightedDigraph &G, int s){
 }
 
 void BellmanFord::relax(EdgeWeightedDigraph &G, int v){
-    std::deque<DirectedEdge> *temp = G.Iterable(v);
+    std::deque<DirectedEdge> *Temp = G.Iterable(v);
     std::deque<DirectedEdge>::const_iterator it;
-    for(it = temp->begin();it != temp->end(); ++it){
+    for(it = Temp->begin(); it != Temp->end(); ++it){
         int w = it->to();
         if(distTo[w] > distTo[v] + it->Getweight()){
             distTo[w] = distTo[v] + it->Getweight();
             edgeTo[w] = *it;
-            if (!onQ[w]){
+            if(!onQ[w]){
                 queue.push_back(w);
                 onQ[w] = true;
             }
@@ -83,11 +86,33 @@ void BellmanFord::relax(EdgeWeightedDigraph &G, int v){
 bool BellmanFord::hasNegativeCycle(){
     return !cycle.empty();
 }
-std::deque<DirectedEdge> *BellmanFord::negativeCycle(){
-    int V = size;
+
+void BellmanFord::findNegativeCycle(){
+    int V = edgeTo.size();
     EdgeWeightedDigraph spt(V);
-    for(int v = 0; v<V; ++v)
-        if(edgeTo[v].Getweight() || edgeTo[v].to() || edgeTo[v].from())
+    for(int v = 0; v < V; v++){
+        if(edgeTo[v].from() || edgeTo[v].to() || edgeTo[v].Getweight())
             spt.addEdge(edgeTo[v].from(),edgeTo[v].to(),edgeTo[v].Getweight());
+    }
+    EdgeWeightedCycleFinder cf(spt);
+    std::deque<int> *tempCycle = cf.GetCycle();
+    std::deque<int>::const_iterator it;
+    for(it = tempCycle->begin(); it != tempCycle->end(); it++)
+        cycle.push_back(*it);
 }
-void BellmanFord::findNegativeCycle(){}
+
+std::deque<int> *BellmanFord::negativeCycle(){
+    return &cycle;
+}
+
+bool BellmanFord::hasPathTo(int v){
+    return distTo[v]<INFINITY;
+}
+
+std::deque<DirectedEdge> *BellmanFord::pathTo(int v){
+    if(!hasPathTo(v))
+         return 0;
+    for(DirectedEdge e = edgeTo[v]; e.from() || e.to() || e.Getweight(); e =edgeTo[e.from()])
+        path.push_front(e);
+    return &path;
+}

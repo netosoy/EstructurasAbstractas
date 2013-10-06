@@ -1,2 +1,6 @@
-main.cpp: In function ‘int main(int, char**)’:
-main.cpp:13:31: error: ‘it.std::_Deque_iterator<_Tp, _Ref, _Ptr>::operator-><IndexToWeight, const IndexToWeight&, const IndexToWeight*>()->IndexToWeight::weight’ cannot be used as a function
+In file included from DirWeightGraph.cpp:1:0:
+DirWeightGraph.hh: In constructor ‘EdgeWeightedCycleFinder::EdgeWeightedCycleFinder(EdgeWeightedDigraph&)’:
+DirWeightGraph.hh:96:30: error: ‘EdgeWeightedCycleFinder::onStack’ will be initialized after [-Werror=reorder]
+DirWeightGraph.hh:95:22: error:   ‘std::vector<int> EdgeWeightedCycleFinder::edgeTo’ [-Werror=reorder]
+DirWeightGraph.cpp:68:1: error:   when initialized here [-Werror=reorder]
+cc1plus: all warnings being treated as errors

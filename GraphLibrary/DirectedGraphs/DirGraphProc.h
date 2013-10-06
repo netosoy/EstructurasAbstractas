@@ -4,77 +4,133 @@
 #include <deque>
 #include <stack>
 class Graph;
-/*
-class Iterable{
-	public:
-		Iterable(int size);
-		~Iterable();
-		bool HasNext();
-		int Next();
-	private:
-		int *Data;
-		int length,counter;
-};
-*/
+/*!
+ * \brief The DirectedDFS class
+ */
 class DirectedDFS{
 	public:
+        /*!
+         * \brief DirectedDFS
+         * \param G
+         * \param s
+         */
 		DirectedDFS(Graph& G, int s);
+        /*!
+         * \brief DirectedDFS
+         * \param G
+         * \param s
+         * \param elements
+         */
 		DirectedDFS(Graph& G, int *s, int elements);
-		bool Reachable(int v){return marked[v];};
+        /*!
+         * \brief Reachable
+         * \param v
+         * \return
+         */
+        bool Reachable(int v){return marked[v];}
 		~DirectedDFS();
 	private:
-		bool *marked;
+        bool *marked;/*!<*/
+        /*!
+         * \brief dfs
+         * \param G
+         * \param s
+         */
 		void dfs(Graph &G, int s);
 };
-
+/*!
+ * \brief The DirectedCycle class
+ */
 class DirectedCycle{
 	public:
+    /*!
+         * \brief DirectedCycle
+         * \param G
+         */
 		DirectedCycle(Graph& G);
+        /*!
+         * \brief hasCycle
+         * \return
+         */
 		bool hasCycle();
-		std::deque<int> *GetCycle();
+        /*!
+         * \brief GetCycle
+         * \return
+         */
+        std::deque<int> *GetCycle();
 		~DirectedCycle();
 	private:
-		std::deque<int> cycle;
-		bool *marked;
-		int *edgeTo;
-		bool *onStack;
+        std::deque<int> cycle;/*!< */
+        bool *marked;/*!< */
+        int *edgeTo;/*!< */
+        bool *onStack;/*!< */
+        /*!
+         * \brief dfs
+         * \param G
+         * \param v
+         */
 		void dfs(Graph &G, int v);
 };
-
+/*!
+ * \brief The DepthFirstOrder class
+ */
 class DepthFirstOrder{
 	public:
+    /*!
+         * \brief DepthFirstOrder
+         * \param G
+         */
 		DepthFirstOrder(Graph& G);
-		std::deque<int> *Getpre(){return &pre;}
-		std::deque<int> *Getpost(){return &post;}
-		std::deque<int> *GetreversePost(){return &reversePost;}
+        /*!
+         * \brief Getpre
+         * \return
+         */
+        std::deque<int> *Getpre(){return &pre;}
+        /*!
+         * \brief Getpost
+         * \return
+         */
+        std::deque<int> *Getpost(){return &post;}
+        /*!
+         * \brief GetreversePost
+         * \return
+         */
+        std::deque<int> *GetreversePost(){return &reversePost;}
 		~DepthFirstOrder();
 	private:
-		bool *marked;
-		std::deque<int> pre;
-		std::deque<int> post;
-		std::deque<int> reversePost;
+        bool *marked;/*!< */
+        std::deque<int> pre;/*!< */
+        std::deque<int> post;/*!< */
+        std::deque<int> reversePost;/*!< */
+        /*!
+         * \brief dfs
+         * \param G
+         * \param v
+         */
 		void dfs(Graph &G, int v);	
 };
-
+/*!
+ * \brief The Topological class
+ */
 class Topological{
 	public:
+    /*!
+         * \brief Topological
+         * \param G
+         */
 		Topological(Graph &G);
-		std::deque<int> *GetOrder();
-		bool isDAG();
+        /*!
+         * \brief GetOrder
+         * \return
+         */
+        std::deque<int> *GetOrder();
+        /*!
+         * \brief isDAG
+         * \return
+         */
+        bool isDAG();
 	private:
-		std::deque<int> *order;
+        std::deque<int> *order;/*!< */
 };
 
-/*class Kosaraju{
-	public:
-		Kosaraju(Graph &G);
-		bool stronglyConnected(int v, int w){return id[v] == id[w];}
-		int id(int v) {return id[v];}
-		int count() {return count;}
-	private:
-		bool *marked;
-		int *id;
-		int count;
-		void dfs(Graph &G, int v);
-};*/
 #endif
