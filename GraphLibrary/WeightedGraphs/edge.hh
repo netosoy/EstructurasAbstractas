@@ -18,7 +18,7 @@ public:
 	float weight();
 	int either();
 	int other(int vertex);
-	int compareTo(Edge that);
+	int compareTo(Edge e);
 	void toString();
 	Edge& operator=(const Edge&);
 	
