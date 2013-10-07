@@ -8,12 +8,17 @@ LazyPrimMST::LazyPrimMST(EdgeWeightedGraph& G){
 	
 	
 	while(!pq.empty()){
-		Edge e = pq.top();
+	///Gets lowest weight edge from pq:
+		Edge e = pq.top(); 
 		pq.pop();
 		int v = e.either(), w = e.other(v);
+	///Skip if ineligible	
 		if (marked[v]&&marked[w]) continue;
+	///Add edge to tree
 		mst.push(e);
+	///Add vertex to tree
 		if (!marked[v]) visit(G, v);
+	///either v or w:
 		if (!marked[w]) visit(G, w);
 	}
 }

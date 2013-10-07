@@ -16,5 +16,5 @@ var annotated =
     [ "LazyPrimMST", "classLazyPrimMST.html", "classLazyPrimMST" ],
     [ "MyBag", "classMyBag.html", "classMyBag" ],
     [ "S_cell", "structS__cell.html", "structS__cell" ],
-    [ "UF", "classUF.html", "classUF" ]
+    [ "UnionFinder", "classUnionFinder.html", "classUnionFinder" ]
 ];

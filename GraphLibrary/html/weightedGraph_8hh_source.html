@@ -82,42 +82,40 @@
 <a name="l00006"></a>00006 <span class="preprocessor">#include &lt;vector&gt;</span>
 <a name="l00007"></a>00007 <span class="preprocessor">#include &lt;queue&gt;</span>
 <a name="l00008"></a>00008 
-<a name="l00009"></a>00009 
-<a name="l00010"></a><a class="code" href="classCompareEdges.html">00010</a> <span class="keyword">class </span><a class="code" href="classCompareEdges.html">CompareEdges</a>{
-<a name="l00011"></a>00011 <span class="keyword">public</span>: 
-<a name="l00012"></a><a class="code" href="classCompareEdges.html#ac2c93f40bbb8db40c5d9a1a4406d6ff5">00012</a>     <span class="keywordtype">bool</span> <a class="code" href="classCompareEdges.html#ac2c93f40bbb8db40c5d9a1a4406d6ff5">operator()</a>(<a class="code" href="classEdge.html" title="Edge class representation.">Edge</a>&amp; e1, <a class="code" href="classEdge.html" title="Edge class representation.">Edge</a>&amp; e2){
-<a name="l00013"></a>00013         <span class="keywordflow">return</span> (e1.<a class="code" href="classEdge.html#aa2dd8bba53d3723b554760b84023f27a" title="Compare this edge weight to e&#39;s weight.">compareTo</a>(e2)==-1);
-<a name="l00014"></a>00014     }
-<a name="l00015"></a>00015 };
-<a name="l00016"></a>00016 
-<a name="l00017"></a><a class="code" href="classEdgeWeightedGraph.html">00017</a> <span class="keyword">class </span><a class="code" href="classEdgeWeightedGraph.html">EdgeWeightedGraph</a>{
-<a name="l00018"></a>00018 
-<a name="l00019"></a>00019 <span class="keyword">private</span>:
-<a name="l00020"></a><a class="code" href="classEdgeWeightedGraph.html#af3fb58088b94c583adae8c8307e01d3a">00020</a>     <span class="keywordtype">int</span> <a class="code" href="classEdgeWeightedGraph.html#af3fb58088b94c583adae8c8307e01d3a">NumV</a>; <span class="comment">// </span>
-<a name="l00021"></a><a class="code" href="classEdgeWeightedGraph.html#a121b25a6ab5354676614a156da892ee6">00021</a>     <span class="keywordtype">int</span> <a class="code" href="classEdgeWeightedGraph.html#a121b25a6ab5354676614a156da892ee6">NumE</a>; <span class="comment">// </span>
-<a name="l00022"></a><a class="code" href="classEdgeWeightedGraph.html#a08679324959d2cf1a220bbfe894cd038">00022</a>     <a class="code" href="classMyBag.html" title="Bag implementtion with linked lists to store Edge objects.">MyBag</a>** <a class="code" href="classEdgeWeightedGraph.html#a08679324959d2cf1a220bbfe894cd038">adj</a>; <span class="comment">//</span>
-<a name="l00023"></a><a class="code" href="classEdgeWeightedGraph.html#a2700a65c5785c9f3a6b8b234370885c5">00023</a>     priority_queue&lt;Edge, vector&lt;Edge&gt;, <a class="code" href="classCompareEdges.html">CompareEdges</a>&gt; <a class="code" href="classEdgeWeightedGraph.html#a2700a65c5785c9f3a6b8b234370885c5">pq</a>;
-<a name="l00024"></a><a class="code" href="classEdgeWeightedGraph.html#aae609885b635e79aa8f24d577b8be4e5">00024</a>     vector&lt;Edge&gt; <a class="code" href="classEdgeWeightedGraph.html#aae609885b635e79aa8f24d577b8be4e5">buf</a>; 
-<a name="l00025"></a>00025 <span class="keyword">public</span>:
-<a name="l00026"></a>00026     <a class="code" href="classEdgeWeightedGraph.html#a41e76ce35c256a778cff1ef99e1c2863">EdgeWeightedGraph</a>(<span class="keywordtype">int</span> <a class="code" href="classEdgeWeightedGraph.html#a1a8ca8977961fdd8c5c389392abbbfd9">V</a>);
-<a name="l00027"></a>00027     <a class="code" href="classEdgeWeightedGraph.html#aeab733a4635f7a6734a02a11163b79a6">~EdgeWeightedGraph</a>();
-<a name="l00028"></a>00028     <span class="keywordtype">int</span> <a class="code" href="classEdgeWeightedGraph.html#a1a8ca8977961fdd8c5c389392abbbfd9">V</a>(); <span class="comment">// </span>
-<a name="l00029"></a>00029     <span class="keywordtype">int</span> <a class="code" href="classEdgeWeightedGraph.html#ab70d65fae13f1938412426a9de330496">E</a>(); <span class="comment">// </span>
-<a name="l00030"></a>00030     <span class="keywordtype">void</span> <a class="code" href="classEdgeWeightedGraph.html#a9f588664d8447c2715bf6922c4890632">print</a>(<span class="keywordtype">int</span> s); <span class="comment">// </span>
-<a name="l00031"></a>00031     <span class="keywordtype">void</span> <a class="code" href="classEdgeWeightedGraph.html#a8d886cf1c96a3aa573ab8bdb504b3ceb">addEdge</a>( <a class="code" href="classEdge.html" title="Edge class representation.">Edge</a> ); <span class="comment">//</span>
-<a name="l00032"></a><a class="code" href="classEdgeWeightedGraph.html#a40bb1471a5802d278d183944c46b4a1e">00032</a>     priority_queue&lt;Edge, vector&lt;Edge&gt;, <a class="code" href="classCompareEdges.html">CompareEdges</a>&gt; <a class="code" href="classEdgeWeightedGraph.html#a40bb1471a5802d278d183944c46b4a1e">priorityQueue</a>(){
-<a name="l00033"></a>00033         <span class="keywordflow">return</span> <a class="code" href="classEdgeWeightedGraph.html#a2700a65c5785c9f3a6b8b234370885c5">pq</a>;
-<a name="l00034"></a>00034     }<span class="comment">//return a priority queue with all the edges sorted by weight*/</span>
-<a name="l00035"></a>00035     <a class="code" href="classMyBag.html" title="Bag implementtion with linked lists to store Edge objects.">MyBag</a>* <a class="code" href="classEdgeWeightedGraph.html#ac42ec3d7f3322592b874be2f73a71459">Iterator</a>(<span class="keywordtype">int</span> v); <span class="comment">//</span>
-<a name="l00036"></a>00036 };
-<a name="l00037"></a>00037 <span class="preprocessor">#endif</span>
+<a name="l00015"></a><a class="code" href="classCompareEdges.html">00015</a> <span class="keyword">class </span><a class="code" href="classCompareEdges.html" title="Compare edges weights.">CompareEdges</a>{
+<a name="l00016"></a>00016 <span class="keyword">public</span>: 
+<a name="l00021"></a><a class="code" href="classCompareEdges.html#ac2c93f40bbb8db40c5d9a1a4406d6ff5">00021</a>     <span class="keywordtype">bool</span> <a class="code" href="classCompareEdges.html#ac2c93f40bbb8db40c5d9a1a4406d6ff5" title="Uses compareTo Edge member function to compare two edges weights.">operator()</a>(<a class="code" href="classEdge.html" title="Edge class representation.">Edge</a>&amp; e1, <a class="code" href="classEdge.html" title="Edge class representation.">Edge</a>&amp; e2){
+<a name="l00022"></a>00022         <span class="keywordflow">return</span> (e1.<a class="code" href="classEdge.html#aa2dd8bba53d3723b554760b84023f27a" title="Compare this edge weight to e&#39;s weight.">compareTo</a>(e2)==-1);
+<a name="l00023"></a>00023     }
+<a name="l00024"></a>00024 };
+<a name="l00031"></a><a class="code" href="classEdgeWeightedGraph.html">00031</a> <span class="keyword">class </span><a class="code" href="classEdgeWeightedGraph.html" title="Extension of graph adjacency list to edge weighted graphs.">EdgeWeightedGraph</a>{
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033 <span class="keyword">private</span>:
+<a name="l00034"></a><a class="code" href="classEdgeWeightedGraph.html#af3fb58088b94c583adae8c8307e01d3a">00034</a>     <span class="keywordtype">int</span> <a class="code" href="classEdgeWeightedGraph.html#af3fb58088b94c583adae8c8307e01d3a">NumV</a>; 
+<a name="l00035"></a><a class="code" href="classEdgeWeightedGraph.html#a121b25a6ab5354676614a156da892ee6">00035</a>     <span class="keywordtype">int</span> <a class="code" href="classEdgeWeightedGraph.html#a121b25a6ab5354676614a156da892ee6">NumE</a>; 
+<a name="l00036"></a><a class="code" href="classEdgeWeightedGraph.html#a08679324959d2cf1a220bbfe894cd038">00036</a>     <a class="code" href="classMyBag.html" title="Bag implementtion with linked lists to store Edge objects.">MyBag</a>** <a class="code" href="classEdgeWeightedGraph.html#a08679324959d2cf1a220bbfe894cd038">adj</a>; 
+<a name="l00037"></a><a class="code" href="classEdgeWeightedGraph.html#a2700a65c5785c9f3a6b8b234370885c5">00037</a>     priority_queue&lt;Edge, vector&lt;Edge&gt;, <a class="code" href="classCompareEdges.html" title="Compare edges weights.">CompareEdges</a>&gt; <a class="code" href="classEdgeWeightedGraph.html#a2700a65c5785c9f3a6b8b234370885c5">pq</a>; 
+<a name="l00038"></a><a class="code" href="classEdgeWeightedGraph.html#aae609885b635e79aa8f24d577b8be4e5">00038</a>     vector&lt;Edge&gt; <a class="code" href="classEdgeWeightedGraph.html#aae609885b635e79aa8f24d577b8be4e5">buf</a>; 
+<a name="l00039"></a>00039 <span class="keyword">public</span>:
+<a name="l00044"></a>00044     <a class="code" href="classEdgeWeightedGraph.html#a41e76ce35c256a778cff1ef99e1c2863" title="Constructor.">EdgeWeightedGraph</a>(<span class="keywordtype">int</span> <a class="code" href="classEdgeWeightedGraph.html#a1a8ca8977961fdd8c5c389392abbbfd9" title="Get number of vertices.">V</a>);
+<a name="l00048"></a>00048     <a class="code" href="classEdgeWeightedGraph.html#aeab733a4635f7a6734a02a11163b79a6" title="Destructor.">~EdgeWeightedGraph</a>();
+<a name="l00052"></a>00052     <span class="keywordtype">int</span> <a class="code" href="classEdgeWeightedGraph.html#a1a8ca8977961fdd8c5c389392abbbfd9" title="Get number of vertices.">V</a>(); 
+<a name="l00056"></a>00056     <span class="keywordtype">int</span> <a class="code" href="classEdgeWeightedGraph.html#ab70d65fae13f1938412426a9de330496" title="Get number of edges.">E</a>();
+<a name="l00060"></a>00060     <span class="keywordtype">void</span> <a class="code" href="classEdgeWeightedGraph.html#afcd6df95afbb87e59fcb8327c5500625" title="Prints all incident edges of v vertex.">print</a>(<span class="keywordtype">int</span> v);
+<a name="l00064"></a>00064     <span class="keywordtype">void</span> <a class="code" href="classEdgeWeightedGraph.html#ae835f092d99a8c30e6f15f134ecca45a" title="Add edge e to this graph.">addEdge</a>( <a class="code" href="classEdge.html" title="Edge class representation.">Edge</a> e);
+<a name="l00068"></a><a class="code" href="classEdgeWeightedGraph.html#a40bb1471a5802d278d183944c46b4a1e">00068</a>     priority_queue&lt;Edge, vector&lt;Edge&gt;, <a class="code" href="classCompareEdges.html" title="Compare edges weights.">CompareEdges</a>&gt; <a class="code" href="classEdgeWeightedGraph.html#a40bb1471a5802d278d183944c46b4a1e" title="Returns a priority queue with all the edges sorted by weight.">priorityQueue</a>(){
+<a name="l00069"></a>00069         <span class="keywordflow">return</span> <a class="code" href="classEdgeWeightedGraph.html#a2700a65c5785c9f3a6b8b234370885c5">pq</a>;
+<a name="l00070"></a>00070     }
+<a name="l00074"></a>00074     <a class="code" href="classMyBag.html" title="Bag implementtion with linked lists to store Edge objects.">MyBag</a>* <a class="code" href="classEdgeWeightedGraph.html#ac42ec3d7f3322592b874be2f73a71459" title="Returns a bag structure pointer of the adjacency list.">Iterator</a>(<span class="keywordtype">int</span> v); <span class="comment">//</span>
+<a name="l00075"></a>00075 };
+<a name="l00076"></a>00076 <span class="preprocessor">#endif</span>
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="weightedGraph_8hh.html">weightedGraph.hh</a>      </li>
 
-    <li class="footer">Generated on Sun Oct 6 2013 23:53:12 for GraphLib by
+    <li class="footer">Generated on Mon Oct 7 2013 01:33:17 for GraphLib by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

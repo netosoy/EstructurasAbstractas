@@ -14,7 +14,7 @@ EagerPrimMST::EagerPrimMST(EdgeWeightedGraph &G){
 	pq->insert(0, 0.0);
 	
 	while(!pq->isEmpty()){
-		visit(G, pq->deleteMin());}
+		visit(G, pq->deleteMin());} //Add closest vertex to tree
 }
 
 EagerPrimMST::~EagerPrimMST(){
@@ -35,8 +35,9 @@ void EagerPrimMST::visit(EdgeWeightedGraph &G, int v){
 		Edge e = G.Iterator(v)->getEdge();
 		int w = e.other(v);
 
-		if(marked[w]) continue;
+		if(marked[w]) continue; // v-u is ineligible
 		if(e.weight() < distTo[w]){
+		// Edge e is the best connection from tree to w
 			edgeTo[w] = e;
 			distTo[w] = e.weight();
 			if(pq->contains(w)) 	{

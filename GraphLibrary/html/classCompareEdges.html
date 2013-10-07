@@ -87,8 +87,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompareEdges.html#ac2c93f40bbb8db40c5d9a1a4406d6ff5">operator()</a> (<a class="el" href="classEdge.html">Edge</a> &amp;e1, <a class="el" href="classEdge.html">Edge</a> &amp;e2)</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="weightedGraph_8hh_source.html#l00010">10</a> of file <a class="el" href="weightedGraph_8hh_source.html">weightedGraph.hh</a>.</p>
+<div class="textblock"><p><a class="el" href="structCompare.html" title="The Compare struct.">Compare</a> edges weights. </p>
+<p>Is needed by priority_queue, to sort <a class="el" href="classEdge.html" title="Edge class representation.">Edge</a> objects in a correct order </p>
+
+<p>Definition at line <a class="el" href="weightedGraph_8hh_source.html#l00015">15</a> of file <a class="el" href="weightedGraph_8hh_source.html">weightedGraph.hh</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="ac2c93f40bbb8db40c5d9a1a4406d6ff5"></a><!-- doxytag: member="CompareEdges::operator()" ref="ac2c93f40bbb8db40c5d9a1a4406d6ff5" args="(Edge &amp;e1, Edge &amp;e2)" -->
 <div class="memitem">
@@ -115,7 +117,10 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="weightedGraph_8hh_source.html#l00012">12</a> of file <a class="el" href="weightedGraph_8hh_source.html">weightedGraph.hh</a>.</p>
+<p>Uses compareTo <a class="el" href="classEdge.html" title="Edge class representation.">Edge</a> member function to compare two edges weights. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if e1s weight is lower than e2s </dd></dl>
+
+<p>Definition at line <a class="el" href="weightedGraph_8hh_source.html#l00021">21</a> of file <a class="el" href="weightedGraph_8hh_source.html">weightedGraph.hh</a>.</p>
 
 </div>
 </div>
@@ -128,7 +133,7 @@ Public Member Functions</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="classCompareEdges.html">CompareEdges</a>      </li>
 
-    <li class="footer">Generated on Sun Oct 6 2013 23:53:12 for GraphLib by
+    <li class="footer">Generated on Mon Oct 7 2013 01:33:17 for GraphLib by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

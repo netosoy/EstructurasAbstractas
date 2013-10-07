@@ -73,6 +73,7 @@
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">EagerPrimMST Class Reference</div>  </div>
@@ -95,9 +96,11 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEagerPrimMST.html#ad7f87aaec79acdf41379aed05a3a9f50">EagerPrimMST</a> (<a class="el" href="classEdgeWeightedGraph.html">EdgeWeightedGraph</a> &amp;G)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEagerPrimMST.html#a03fba1af2fd2b8f193ae95176731cc07">~EagerPrimMST</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEagerPrimMST.html#a598e98ecf9120b42df502f89e54bf4fb">weight</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEagerPrimMST.html#a0a3592249f208c11fff7fc0978cd6152">visit</a> (<a class="el" href="classEdgeWeightedGraph.html">EdgeWeightedGraph</a> &amp;G, int v)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">Edge</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEagerPrimMST.html#a16bf622d7402c42833b6832d3e940864">IterableMST</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEagerPrimMST.html#adcf99b3aca5b78e498976ef5265aa0b0">printMST</a> ()</td></tr>
+<tr><td colspan="2"><h2><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEagerPrimMST.html#a0a3592249f208c11fff7fc0978cd6152">visit</a> (<a class="el" href="classEdgeWeightedGraph.html">EdgeWeightedGraph</a> &amp;G, int v)</td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEdge.html">Edge</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEagerPrimMST.html#a4fbd113ad466b44c5f39193dff4c664e">edgeTo</a></td></tr>
@@ -107,8 +110,10 @@ Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEagerPrimMST.html#af546af33d64a3da5b296894a7b19bde6">V</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="EagerPrimMST_8hh_source.html#l00013">13</a> of file <a class="el" href="EagerPrimMST_8hh_source.html">EagerPrimMST.hh</a>.</p>
+<div class="textblock"><p>The Eager implementation of Prim algorithm class. </p>
+<p>This class is used for generating an MST using Prim's algorithm This implementation of Prim’s algorithm keeps eligible crossing edges on an index priority queue. </p>
+
+<p>Definition at line <a class="el" href="EagerPrimMST_8hh_source.html#l00018">18</a> of file <a class="el" href="EagerPrimMST_8hh_source.html">EagerPrimMST.hh</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ad7f87aaec79acdf41379aed05a3a9f50"></a><!-- doxytag: member="EagerPrimMST::EagerPrimMST" ref="ad7f87aaec79acdf41379aed05a3a9f50" args="(EdgeWeightedGraph &amp;G)" -->
 <div class="memitem">
@@ -125,6 +130,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Constructor. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">G</td><td>Analyzed weighted graph. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a03fba1af2fd2b8f193ae95176731cc07"></a><!-- doxytag: member="EagerPrimMST::~EagerPrimMST" ref="a03fba1af2fd2b8f193ae95176731cc07" args="()" -->
@@ -140,6 +153,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Destructor. </p>
 
 </div>
 </div>
@@ -158,7 +173,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="EagerPrimMST_8hh_source.html#l00027">27</a> of file <a class="el" href="EagerPrimMST_8hh_source.html">EagerPrimMST.hh</a>.</p>
+<p>Gets MST's edge queue. </p>
+
+<p>Definition at line <a class="el" href="EagerPrimMST_8hh_source.html#l00050">50</a> of file <a class="el" href="EagerPrimMST_8hh_source.html">EagerPrimMST.hh</a>.</p>
 
 </div>
 </div>
@@ -175,6 +192,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Prints MST's edges. </p>
 
 </div>
 </div>
@@ -197,11 +216,20 @@ Private Attributes</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Add v to the tree; update data structures. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>The vertex that will be added. </td></tr>
+    <tr><td class="paramname">G</td><td>Weighted graph. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -219,6 +247,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets MST total weight. </p>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -232,8 +262,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>dist[w]=edgeTo[w].<a class="el" href="classEagerPrimMST.html#a598e98ecf9120b42df502f89e54bf4fb" title="Gets MST total weight.">weight()</a> </p>
 
-<p>Definition at line <a class="el" href="EagerPrimMST_8hh_source.html#l00017">17</a> of file <a class="el" href="EagerPrimMST_8hh_source.html">EagerPrimMST.hh</a>.</p>
+<p>Definition at line <a class="el" href="EagerPrimMST_8hh_source.html#l00022">22</a> of file <a class="el" href="EagerPrimMST_8hh_source.html">EagerPrimMST.hh</a>.</p>
 
 </div>
 </div>
@@ -247,8 +278,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Shortest edge from tree vertex </p>
 
-<p>Definition at line <a class="el" href="EagerPrimMST_8hh_source.html#l00016">16</a> of file <a class="el" href="EagerPrimMST_8hh_source.html">EagerPrimMST.hh</a>.</p>
+<p>Definition at line <a class="el" href="EagerPrimMST_8hh_source.html#l00021">21</a> of file <a class="el" href="EagerPrimMST_8hh_source.html">EagerPrimMST.hh</a>.</p>
 
 </div>
 </div>
@@ -262,8 +294,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>True if v is on tree </p>
 
-<p>Definition at line <a class="el" href="EagerPrimMST_8hh_source.html#l00018">18</a> of file <a class="el" href="EagerPrimMST_8hh_source.html">EagerPrimMST.hh</a>.</p>
+<p>Definition at line <a class="el" href="EagerPrimMST_8hh_source.html#l00023">23</a> of file <a class="el" href="EagerPrimMST_8hh_source.html">EagerPrimMST.hh</a>.</p>
 
 </div>
 </div>
@@ -277,8 +310,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Eligible crossing edges </p>
 
-<p>Definition at line <a class="el" href="EagerPrimMST_8hh_source.html#l00019">19</a> of file <a class="el" href="EagerPrimMST_8hh_source.html">EagerPrimMST.hh</a>.</p>
+<p>Definition at line <a class="el" href="EagerPrimMST_8hh_source.html#l00024">24</a> of file <a class="el" href="EagerPrimMST_8hh_source.html">EagerPrimMST.hh</a>.</p>
 
 </div>
 </div>
@@ -292,8 +326,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Number of graph vertices </p>
 
-<p>Definition at line <a class="el" href="EagerPrimMST_8hh_source.html#l00020">20</a> of file <a class="el" href="EagerPrimMST_8hh_source.html">EagerPrimMST.hh</a>.</p>
+<p>Definition at line <a class="el" href="EagerPrimMST_8hh_source.html#l00025">25</a> of file <a class="el" href="EagerPrimMST_8hh_source.html">EagerPrimMST.hh</a>.</p>
 
 </div>
 </div>
@@ -306,7 +341,7 @@ Private Attributes</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="classEagerPrimMST.html">EagerPrimMST</a>      </li>
 
-    <li class="footer">Generated on Sun Oct 6 2013 23:53:12 for GraphLib by
+    <li class="footer">Generated on Mon Oct 7 2013 01:33:17 for GraphLib by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

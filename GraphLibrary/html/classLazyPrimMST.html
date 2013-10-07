@@ -103,8 +103,10 @@ Private Attributes</h2></td></tr>
 &lt; <a class="el" href="classEdge.html">Edge</a> &gt;, <a class="el" href="classCompareEdges.html">CompareEdges</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLazyPrimMST.html#a5c8f017a330bd91ee9e2676f065af9a5">pq</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="LazyPrimMST_8hh_source.html#l00009">9</a> of file <a class="el" href="LazyPrimMST_8hh_source.html">LazyPrimMST.hh</a>.</p>
+<div class="textblock"><p>The Lazy implementation of Prim algorithm class. </p>
+<p>This class is used for generating an MST using Prim's algorithm This implementation of Prim’s algorithm uses a priority queue to hold crossing edges, a vertex-in-dexed arrays to mark tree vertices, and a queue to hold MST edges. This implementation is a lazy approach where we leave ineligible edges in the priority queue. </p>
+
+<p>Definition at line <a class="el" href="LazyPrimMST_8hh_source.html#l00014">14</a> of file <a class="el" href="LazyPrimMST_8hh_source.html">LazyPrimMST.hh</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a1c6a2d720651e3354eb2fa8b7693db95"></a><!-- doxytag: member="LazyPrimMST::LazyPrimMST" ref="a1c6a2d720651e3354eb2fa8b7693db95" args="(EdgeWeightedGraph &amp;G)" -->
 <div class="memitem">
@@ -121,6 +123,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Constructor. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">G</td><td>Analyzed weighted graph. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a84890ac4db87066cccfa5eeee4f3831a"></a><!-- doxytag: member="LazyPrimMST::~LazyPrimMST" ref="a84890ac4db87066cccfa5eeee4f3831a" args="()" -->
@@ -136,6 +146,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Destructor. </p>
 
 </div>
 </div>
@@ -154,7 +166,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="LazyPrimMST_8hh_source.html#l00021">21</a> of file <a class="el" href="LazyPrimMST_8hh_source.html">LazyPrimMST.hh</a>.</p>
+<p>Gets MST's edge queue. </p>
+
+<p>Definition at line <a class="el" href="LazyPrimMST_8hh_source.html#l00043">43</a> of file <a class="el" href="LazyPrimMST_8hh_source.html">LazyPrimMST.hh</a>.</p>
 
 </div>
 </div>
@@ -171,6 +185,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Prints MST's edges. </p>
 
 </div>
 </div>
@@ -199,6 +215,15 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Mark v and add to pq all edges from v to unmarked vertices. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>The vertex that will be added. </td></tr>
+    <tr><td class="paramname">G</td><td>Weighted graph. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a6f79a09208fd1d84321a421385925f76"></a><!-- doxytag: member="LazyPrimMST::weight" ref="a6f79a09208fd1d84321a421385925f76" args="()" -->
@@ -215,6 +240,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets MST total weight. </p>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -228,8 +255,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>priority queue auxiliary edge vector </p>
 
-<p>Definition at line <a class="el" href="LazyPrimMST_8hh_source.html#l00013">13</a> of file <a class="el" href="LazyPrimMST_8hh_source.html">LazyPrimMST.hh</a>.</p>
+<p>Definition at line <a class="el" href="LazyPrimMST_8hh_source.html#l00018">18</a> of file <a class="el" href="LazyPrimMST_8hh_source.html">LazyPrimMST.hh</a>.</p>
 
 </div>
 </div>
@@ -243,8 +271,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>MST vertices </p>
 
-<p>Definition at line <a class="el" href="LazyPrimMST_8hh_source.html#l00011">11</a> of file <a class="el" href="LazyPrimMST_8hh_source.html">LazyPrimMST.hh</a>.</p>
+<p>Definition at line <a class="el" href="LazyPrimMST_8hh_source.html#l00016">16</a> of file <a class="el" href="LazyPrimMST_8hh_source.html">LazyPrimMST.hh</a>.</p>
 
 </div>
 </div>
@@ -258,8 +287,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>MST edges </p>
 
-<p>Definition at line <a class="el" href="LazyPrimMST_8hh_source.html#l00012">12</a> of file <a class="el" href="LazyPrimMST_8hh_source.html">LazyPrimMST.hh</a>.</p>
+<p>Definition at line <a class="el" href="LazyPrimMST_8hh_source.html#l00017">17</a> of file <a class="el" href="LazyPrimMST_8hh_source.html">LazyPrimMST.hh</a>.</p>
 
 </div>
 </div>
@@ -273,8 +303,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>crossing and ineligibles edges </p>
 
-<p>Definition at line <a class="el" href="LazyPrimMST_8hh_source.html#l00014">14</a> of file <a class="el" href="LazyPrimMST_8hh_source.html">LazyPrimMST.hh</a>.</p>
+<p>Definition at line <a class="el" href="LazyPrimMST_8hh_source.html#l00019">19</a> of file <a class="el" href="LazyPrimMST_8hh_source.html">LazyPrimMST.hh</a>.</p>
 
 </div>
 </div>
@@ -287,7 +318,7 @@ Private Attributes</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="classLazyPrimMST.html">LazyPrimMST</a>      </li>
 
-    <li class="footer">Generated on Sun Oct 6 2013 23:53:12 for GraphLib by
+    <li class="footer">Generated on Mon Oct 7 2013 01:33:17 for GraphLib by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

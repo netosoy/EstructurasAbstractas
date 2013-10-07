@@ -83,32 +83,25 @@
 <a name="l00007"></a>00007 
 <a name="l00008"></a>00008 <span class="keyword">using namespace </span>std;
 <a name="l00009"></a>00009 
-<a name="l00010"></a>00010 
-<a name="l00011"></a>00011 
-<a name="l00012"></a><a class="code" href="classkruskalMST.html">00012</a> <span class="keyword">class </span><a class="code" href="classkruskalMST.html">kruskalMST</a>{
-<a name="l00013"></a><a class="code" href="classkruskalMST.html#a9332cc77d466c179199c6e92af049ad1">00013</a>     queue&lt;Edge&gt; <a class="code" href="classkruskalMST.html#a9332cc77d466c179199c6e92af049ad1">mst</a>;
-<a name="l00014"></a><a class="code" href="classkruskalMST.html#a1b33fb8406a3ddb8b60c420e7503642e">00014</a>     priority_queue&lt;Edge, vector&lt;Edge&gt;, <a class="code" href="classCompareEdges.html">CompareEdges</a>&gt; <a class="code" href="classkruskalMST.html#a1b33fb8406a3ddb8b60c420e7503642e">pq</a>;
-<a name="l00015"></a>00015 
-<a name="l00016"></a>00016     
-<a name="l00017"></a>00017 <span class="keyword">public</span>:
-<a name="l00018"></a>00018     <a class="code" href="classkruskalMST.html">kruskalMST</a>(<a class="code" href="classEdgeWeightedGraph.html">EdgeWeightedGraph</a>&amp; G);
-<a name="l00019"></a>00019     <span class="keywordtype">float</span> weight();
-<a name="l00020"></a><a class="code" href="classkruskalMST.html#a17555c6a9dfad84a45ecf7a0429c22bd">00020</a>     queue&lt;Edge&gt; <a class="code" href="classkruskalMST.html#a17555c6a9dfad84a45ecf7a0429c22bd">IterableMST</a>(){
-<a name="l00021"></a>00021         <span class="keywordflow">return</span> mst;
-<a name="l00022"></a>00022     }
-<a name="l00023"></a>00023     <span class="keywordtype">void</span> printMST();
-<a name="l00024"></a>00024     
-<a name="l00025"></a>00025     
-<a name="l00026"></a>00026 };
-<a name="l00027"></a>00027 
-<a name="l00028"></a>00028 <span class="preprocessor">#endif</span>
+<a name="l00016"></a><a class="code" href="classkruskalMST.html">00016</a> <span class="keyword">class </span><a class="code" href="classkruskalMST.html" title="Kruskal algorithm implementation.">kruskalMST</a>{
+<a name="l00017"></a><a class="code" href="classkruskalMST.html#a9332cc77d466c179199c6e92af049ad1">00017</a>     queue&lt;Edge&gt; <a class="code" href="classkruskalMST.html#a9332cc77d466c179199c6e92af049ad1">mst</a>; 
+<a name="l00018"></a><a class="code" href="classkruskalMST.html#a1b33fb8406a3ddb8b60c420e7503642e">00018</a>     priority_queue&lt;Edge, vector&lt;Edge&gt;, <a class="code" href="classCompareEdges.html" title="Compare edges weights.">CompareEdges</a>&gt; <a class="code" href="classkruskalMST.html#a1b33fb8406a3ddb8b60c420e7503642e">pq</a>; 
+<a name="l00020"></a>00020 <span class="keyword">public</span>:
+<a name="l00025"></a>00025     <a class="code" href="classkruskalMST.html" title="Kruskal algorithm implementation.">kruskalMST</a>(<a class="code" href="classEdgeWeightedGraph.html" title="Extension of graph adjacency list to edge weighted graphs.">EdgeWeightedGraph</a>&amp; G);
+<a name="l00029"></a>00029     <span class="keywordtype">float</span> weight();
+<a name="l00033"></a><a class="code" href="classkruskalMST.html#a17555c6a9dfad84a45ecf7a0429c22bd">00033</a>     queue&lt;Edge&gt; <a class="code" href="classkruskalMST.html#a17555c6a9dfad84a45ecf7a0429c22bd" title="Gets MST&#39;s edge queue.">IterableMST</a>(){
+<a name="l00034"></a>00034         <span class="keywordflow">return</span> mst;
+<a name="l00035"></a>00035     }
+<a name="l00039"></a>00039     <span class="keywordtype">void</span> printMST();    
+<a name="l00040"></a>00040 };
+<a name="l00041"></a>00041 <span class="preprocessor">#endif</span>
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="kruskalMST_8hh.html">kruskalMST.hh</a>      </li>
 
-    <li class="footer">Generated on Sun Oct 6 2013 23:53:12 for GraphLib by
+    <li class="footer">Generated on Mon Oct 7 2013 01:33:17 for GraphLib by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

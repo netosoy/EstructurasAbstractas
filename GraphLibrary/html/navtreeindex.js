@@ -18,7 +18,7 @@ var NAVTREEINDEX =
 "classLazyPrimMST.html":[0,0,13],
 "classMyBag.html":[0,0,14],
 "structS__cell.html":[0,0,15],
-"classUF.html":[0,0,16],
+"classUnionFinder.html":[0,0,16],
 "classes.html":[0,1],
 "functions.html":[0,2,0],
 "functions_func.html":[0,2,1],

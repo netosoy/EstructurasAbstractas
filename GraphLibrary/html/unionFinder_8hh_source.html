@@ -79,31 +79,28 @@
 <a name="l00003"></a>00003 <span class="preprocessor"></span><span class="preprocessor">#include &lt;iostream&gt;</span>
 <a name="l00004"></a>00004 
 <a name="l00005"></a>00005 <span class="keyword">using namespace </span>std;
-<a name="l00006"></a><a class="code" href="classUF.html">00006</a> <span class="keyword">class </span><a class="code" href="classUF.html">UF</a>{
-<a name="l00007"></a>00007     
-<a name="l00008"></a><a class="code" href="classUF.html#ac977cf42050c3f0be9b2b9af829c3c7c">00008</a>     <span class="keywordtype">int</span>* <a class="code" href="classUF.html#ac977cf42050c3f0be9b2b9af829c3c7c">id</a>; 
-<a name="l00009"></a><a class="code" href="classUF.html#a84b5feeb961260819e569acfeed34920">00009</a>     <span class="keywordtype">int</span> count, <a class="code" href="classUF.html#a84b5feeb961260819e569acfeed34920">size</a>;
-<a name="l00010"></a>00010     
-<a name="l00011"></a>00011 <span class="keyword">public</span>:
-<a name="l00012"></a>00012 
-<a name="l00013"></a>00013     <a class="code" href="classUF.html">UF</a>(<span class="keywordtype">int</span> N); <span class="comment">//initialize N sites wirh integer names (0 to N-1)</span>
-<a name="l00014"></a>00014     ~<a class="code" href="classUF.html">UF</a>();
-<a name="l00015"></a>00015     <span class="keywordtype">void</span> Union(<span class="keywordtype">int</span> p, <span class="keywordtype">int</span> q); <span class="comment">// add connection between p and q</span>
-<a name="l00016"></a>00016     <span class="keywordtype">int</span> find(<span class="keywordtype">int</span> p); <span class="comment">// component identifier for p(0 to N-1)</span>
-<a name="l00017"></a>00017     <span class="keywordtype">bool</span> connected(<span class="keywordtype">int</span> p, <span class="keywordtype">int</span> q); <span class="comment">// return true if p and are in the same component</span>
-<a name="l00018"></a>00018     <span class="keywordtype">int</span> Count(<span class="keywordtype">void</span>); <span class="comment">// number of components</span>
-<a name="l00019"></a>00019      
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021 };
-<a name="l00022"></a>00022 
-<a name="l00023"></a>00023 <span class="preprocessor">#endif</span>
+<a name="l00006"></a>00006 
+<a name="l00014"></a><a class="code" href="classUnionFinder.html">00014</a> <span class="keyword">class </span><a class="code" href="classUnionFinder.html" title="The union finder class.">UnionFinder</a>{
+<a name="l00015"></a>00015     
+<a name="l00016"></a><a class="code" href="classUnionFinder.html#a36be9ebe4cdac6fac2254d0e2934e698">00016</a>     <span class="keywordtype">int</span>* <a class="code" href="classUnionFinder.html#a36be9ebe4cdac6fac2254d0e2934e698">id</a>; 
+<a name="l00017"></a><a class="code" href="classUnionFinder.html#ab4a42092c602bf4d61b5ab17d03b113c">00017</a>     <span class="keywordtype">int</span> count, <a class="code" href="classUnionFinder.html#ab4a42092c602bf4d61b5ab17d03b113c">size</a>; 
+<a name="l00019"></a>00019 <span class="keyword">public</span>:
+<a name="l00024"></a>00024     <a class="code" href="classUnionFinder.html" title="The union finder class.">UnionFinder</a>(<span class="keywordtype">int</span> N); 
+<a name="l00028"></a>00028     ~<a class="code" href="classUnionFinder.html" title="The union finder class.">UnionFinder</a>();
+<a name="l00032"></a>00032     <span class="keywordtype">void</span> Union(<span class="keywordtype">int</span> p, <span class="keywordtype">int</span> q); 
+<a name="l00036"></a>00036     <span class="keywordtype">int</span> find(<span class="keywordtype">int</span> p);    
+<a name="l00040"></a>00040     <span class="keywordtype">bool</span> connected(<span class="keywordtype">int</span> p, <span class="keywordtype">int</span> q);
+<a name="l00044"></a>00044     <span class="keywordtype">int</span> Count(<span class="keywordtype">void</span>); 
+<a name="l00045"></a>00045 };
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047 <span class="preprocessor">#endif</span>
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="unionFinder_8hh.html">unionFinder.hh</a>      </li>
 
-    <li class="footer">Generated on Sun Oct 6 2013 23:53:12 for GraphLib by
+    <li class="footer">Generated on Mon Oct 7 2013 01:33:17 for GraphLib by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

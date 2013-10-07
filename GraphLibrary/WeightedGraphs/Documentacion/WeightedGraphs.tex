@@ -30,7 +30,7 @@
 
     \begin{pgfonlayer}{background}
         \foreach \start/\end in {#2}
-            \path[selected edge,#5] (#3\start) -- (#3\end);
+            \path[rojod edge,#5] (#3\start) -- (#3\end);
     \end{pgfonlayer}
     \end{scope}
 }
@@ -49,7 +49,7 @@
 
     \begin{pgfonlayer}{background}
         \foreach \start/\end in {#2}
-            \path[selected edge,#5] (#3\start) -- (#3\end);
+            \path[rojod edge,#5] (#3\start) -- (#3\end);
     \end{pgfonlayer}
     \end{scope}
 
@@ -69,16 +69,15 @@
 
     \begin{pgfonlayer}{background}
         \foreach \start/\end in {#2}
-            \path[selected edge,#5] (#3\start) -- (#3\end);
+            \path[rojog edge,#5] (#3\start) -- (#3\end);
     \end{pgfonlayer}
     \end{scope}
 
 }
-
 \newcommand{\DrawEJcGraph}[5]{
 
-    \begin{scope}[#4]
-    \foreach \pos/\nodo in {{(0,0)/4}, {(0,2.2)/5}, {(1.5,1.7)/7}, {(3,3)/1}, {(3,1)/0}, {(4.5,1.7)/2}, {(4.5,3)/3}, {(7,0)/6}}
+    \begin{scope}[#5]
+    \foreach \pos/\nodo in {{(0,0)/4}, {(0,1.8)/5}, {(1.1,1.3)/7}, {(2.6,2.6)/1}, {(2.6,0.6)/0}, {(4.1,1.3)/2}, {(4.1,2.6)/3}, {(6.6,0)/6}}
         \node[vertex] (#3\nodo) at \pos {\nodo};
     \foreach \start/\end in {4/5, 5/7, 7/1,7/0,0/2,2/3,2/6,4/7,1/5,0/4,1/2,1/3,2/7,3/6,6/0,6/4}
         \path[edge,#5] (#3\start) -- (#3\end);
@@ -86,17 +85,23 @@
     \foreach \nodo in {#1}
         \node[selected vertex] at (#3\nodo) {\nodo};
 
-    \begin{pgfonlayer}{background}
+    \begin{pgfonlayer}{background}%rojo delgado
         \foreach \start/\end in {#2}
-            \path[selected edge,#5] (#3\start) -- (#3\end);
+            \path[rojod edge,#5] (#3\start) -- (#3\end);
     \end{pgfonlayer}
-    \begin{pgfonlayer}{background}
+    \begin{pgfonlayer}{background}%rojo grueso
         \foreach \start/\end in {#3}
-            \path[ignored edge,#5] (#3\start) -- (#3\end);
+            \path[rojog edge,#5] (#3\start) -- (#3\end);
+    \end{pgfonlayer}
+    \begin{pgfonlayer}{background}%azul
+        \foreach \start/\end in {#4}
+            \path[azul edge,#5] (#3\start) -- (#3\end);
     \end{pgfonlayer}
     \end{scope}
 
 }
+
+
 
 
 
@@ -197,7 +202,6 @@
 
 \fancyfoot[R]{\thepage}
 
-
 \begin{document}
 %Tikz styles definitions
 \tikzstyle{vertex_adjMat}=[circle,fill=blue!25,minimum size=10pt,inner sep=2pt,font = \small]
@@ -208,9 +212,9 @@
 \tikzstyle{selected vertex} = [vertex, fill=red!24]
 \tikzstyle{edge} = [draw,thick,-]
 \tikzstyle{weight} = [font=\scriptsize]
-\tikzstyle{selected edge} = [draw,line width=4pt,-,red!50]
-\tikzstyle{ignored edge} = [draw,line width=3pt,-,green!20]
-\tikzstyle{selecte edge} = [draw,line width=3pt,-,blue!50]
+\tikzstyle{rojod edge} = [draw,line width=2pt,-,red!50]
+\tikzstyle{rojog edge} = [draw,line width=4pt,-,red!70]
+\tikzstyle{azul edge} = [draw,line width=4pt,-,blue!50]
 \tikzstyle{arrow} = [fill=red!80, draw = black!20]
 \pgfdeclarelayer{background}
 \pgfsetlayers{background,main}
@@ -351,21 +355,21 @@ Esta estructura tiene una complejidad espacial de \emph{E+V}, lo cual es menor q
 \subsection{Algoritmos enfocados en grafos dirigidos}
 \newpage
 \subsection{Algoritmos para la b\'usqueda de \'arboles de expansi\'on m\'inima}
-Un grafo de aristas con peso o edge-weighted graph es un modelo de grafo donde se asocia pesos o costos con cada arista. Se pueden aplicar en muchos modelos naturales, por ejemplo un mapa de rutas aéreas, donde los pesos pueden representar distancias, además por ejemplo en el diseño de un circuito electrónico a veces se necesita hacer que los pines  de muchos componentes sean eléctricamente equivalentes, cableandolos juntos en un solo nodo. Para conectar un grupo de n pines, se puede usar un arreglo de n-1 cables, cada uno conectando 2 pines. De todos estos arreglos, el que utiliza la menor cantidad de cable es casi siempre el más deseado. 
+Un grafo de bordes con peso es un modelo de grafo donde se asocia pesos o costos con cada borde. Se pueden aplicar en muchos modelos naturales, por ejemplo un mapa de rutas aéreas, donde los pesos pueden representar distancias, además por ejemplo en el diseño de un circuito electrónico a veces se necesita hacer que los pines de muchos componentes sean eléctricamente equivalentes, cableandolos juntos en un solo nodo. Para conectar un grupo de n pines, se puede usar un arreglo de n-1 cables, cada uno conectando 2 pines. De todos estos arreglos, el que utiliza la menor cantidad de cable es casi siempre el más deseado. 
 
-Este problema de cableado se puede modelar con un grafo conectado, indirecto G = (V,E), donde V es un grupo de nodos o pines, E representa un grupo de posibles interconecciones entre pares de nodos, y por cada arista (\textit{u,v}) $\in$  E, tenemos un peso $\omega$(\textit{u,v}) especificando el costo(cantidad de cable requerido) para conectar \textit{u} y \textit{v}. Luego lo que se desea es encontrar un subgrupo acíclico T$ \subseteq $E que conecte todos los vértices y cuyo peso total:
+Este problema de cableado se puede modelar con un grafo conectado, indirecto G = (V,E), donde V es un grupo de nodos o pines, E representa un grupo de posibles interconecciones entre pares de nodos, y por cada borde (\textit{u,v}) $\in$  E, tenemos un peso $\omega$(\textit{u,v}) especificando el costo(cantidad de cable requerido) para conectar \textit{u} y \textit{v}. Luego lo que se desea es encontrar un subgrupo acíclico T$ \subseteq $E que conecte todos los vértices y cuyo peso total:
 
 \begin{equation}
  \omega (T) =  \sum_{(u,v) \in T}  \omega (u,v) 
 \end{equation}
-
+\\
 sea minimizado. Ya que T es acíclico y conecta todos los vértices, este debe formar un árbol, al cual se le llama árbol de expansión mínima, ya que se expande por todos los vértices del grafo G como se muestra en la figura \ref{MST1}. 
 
 
 \begin{figure}[!h]
     \centering
     \begin{tikzpicture}
-        \DrawEJGraph{}{4/5,5/7,7/0,7/1,0/2,2/3,2/6}{a}{}{}
+        \DrawEJGraph{}{4/5,5/7,7/0,7/1,0/2,2/3,2/6}{}{}{}
     \end{tikzpicture}
     \caption{Representaci\'on Gr\'afica de un MST}
     \label{MST1}
@@ -373,24 +377,24 @@ sea minimizado. Ya que T es acíclico y conecta todos los vértices, este debe f
 
 En esta librería se implementaron dos algoritmos para resolver el problema de los arboles de expansión mínima: el de Kruskal y el de Prim. Cada uno de estos algoritmos es una variación del algoritmo de greedy, el cual se definirá más adelante. 
 
-A continuación se definirá como crece un árbol de mínima expansión. Asumiendo que que tenemos un grafo, conectado e indirecto G = (V,E) con un peso $\omega: E \longrightarrow  \Re$, y queremos encontrar el árbol de expansión mínima para G. La estrategia de greedy sigue el siguiente método genérico, el cual aumenta el MST(por sus siglas en inglés) una arista a la vez. Este maneja un conjunto de aristas A, manteniendo el siguiente ciclo invariante: \textbf{Antes de cada iteración, A es un subconjunto de algún árbol de expansión mínima.}
+A continuación se definirá como crece un árbol de mínima expansión. Asumiendo que que tenemos un grafo, conectado e indirecto G = (V,E) con un peso $\omega: E \longrightarrow  \Re$, y queremos encontrar el árbol de expansión mínima para G. La estrategia de greedy sigue el siguiente método genérico, el cual aumenta el MST(por sus siglas en inglés) un borde a la vez. Este maneja un conjunto de bordes A, manteniendo el siguiente ciclo invariante: \textbf{Antes de cada iteración, A es un subconjunto de algún árbol de expansión mínima.}
 
-En cada paso, se determina una arista (\textit{u,v}) la cual puede ser agregada a A sin violar la declaración anterior, en el sentido que A$\cup${(\textit{u,v})} también es un subconjunto de un árbol de mínima expansión. A esta arista le podemos llamar \textit{arista segura} para A, ya que podemos agregarla a A mientras que se mantiene el ciclo invariante.\\ \\
+En cada paso, se determina un borde (\textit{u,v}) el cual puede ser agregado a A sin violar la declaración anterior, en el sentido que A$\cup${(\textit{u,v})} también es un subconjunto de un árbol de mínima expansión. A este borde le podemos llamar \textit{borde seguro} para A, ya que podemos agregarlo a A mientras que se mantiene el ciclo invariante.\\ \\
 \textbf{Seudocódigo del MST(G,$ \omega$) Genérico: }\\
 1- A=$ \emptyset$\\
 2- \textbf{while} (A no forma un arbol de expansion)\\
-3- 	\indent	encuentre una arista ($u,v$) que sea \textit{segura} para A\\ 4- 	\indent	A=A$\cup${($u,v$)}\\
+3- 	\indent	encuentre un borde ($u,v$) que sea \textit{seguro} para A\\ 4- 	\indent	A=A$\cup${($u,v$)}\\
 5- \textbf{return} A\\
 \\
 Utilizamos este ciclo invariante de la siguiente forma:
 \\
 \textbf{Inicialización:} La línea 1 muestra las condiciones iniciales, en las cuales el conjunto A trivialmente satisface la condición del ciclo invariante.  \\
-\textbf{Mantenimiento:} El ciclo se mantiene invariante, es decir cumpliendo la iteración en las líneas 2 a 4, agregando solo aristas seguras a A.\\
-\textbf{Terminación:} Todos las aristas agregadas a A están en un árbol de expansión mínima, por lo tanto el conjunto A devuelto en la línea 5 debe ser el árbol de expansión mínima.
+\textbf{Mantenimiento:} El ciclo se mantiene invariante, es decir cumpliendo la iteración en las líneas 2 a 4, agregando solo bordes seguros a A.\\
+\textbf{Terminación:} Todos los bordes agregados a A están en un árbol de expansión mínima, por lo tanto el conjunto A devuelto en la línea 5 debe ser el árbol de expansión mínima.
 
-Obviamente la parte truculenta se encuentra tratando de encontrar la arista que es segura, en la línea 3. Una debe existir, ya que desde que la línea 3 es ejecutada, la invarianza dicta que hay un árbol de expansión T el cual A$ \subseteq $T. Dentro del ciclo \textbf{while}, A debe ser un subconjunto de T, y por lo tanto debe haber una arista ($u,v$) $ \in $ T, tal que ($u, v$) $\notin$ A y ($u, v$) es seguro para A.
+Obviamente la parte truculenta se encuentra tratando de encontrar el borde que es seguro, en la línea 3. Uno debe existir, ya que desde que la línea 3 es ejecutada, la invarianza dicta que hay un árbol de expansión T el cual A$ \subseteq $T. Dentro del ciclo \textbf{while}, A debe ser un subconjunto de T, y por lo tanto debe haber un borde ($u,v$) $ \in $ T, tal que ($u, v$) $\notin$ A y ($u, v$) es seguro para A.
 
-Para definir una arista segura, primero debemos definir ciertos conceptos. Un \textbf{corte} (S, V-S) de un grafo indirecto G = (V,E) es una partición de V. La figura \ref{MST2} ilustra esta idea, donde tenemos un conjunto de vertices rojos y azules. Decimos que un corte \textbf{respeta} un conjuto A de aristas, si ninguna arista en A cruza el corte. Una arista ($u,v$) $\in$ E \textbf{cruza} el corte (S, V-S) si uno de sus extremos está en S y el otro en V-S, los de color rojo. Una arista es una \textbf{arista liviana} cruzando un corte, si su peso es el mínimo de todas las aristas que también lo cruzan.
+Para definir un borde seguro, primero debemos definir ciertos conceptos. Un \textbf{corte} (S, V-S) de un grafo indirecto G = (V,E) es una partición de V. La figura \ref{MST2} ilustra esta idea, donde tenemos un conjunto de vertices rojos y azules. Decimos que un corte \textbf{respeta} un conjuto A de bordes, si ningún borde en A cruza el corte. Un borde ($u,v$) $\in$ E \textbf{cruza} el corte (S, V-S) si uno de sus extremos está en S y el otro en V-S, los de color rojo. Un borde es un \textbf{borde liviano} cruzando un corte, si su peso es el mínimo de todos las bordes que también lo cruzan.
 
 \begin{figure}[!h]
     \centering
@@ -401,12 +405,12 @@ Para definir una arista segura, primero debemos definir ciertos conceptos. Un \t
     \label{MST2}
 \end{figure}
 
-Una regla para reconocer una arista segura es la siguiente: Sea G = (V,E) un grafo indirecto y conectado, con valores de peso reales $\omega$ definidos en E. Sea A un subconjunto de E dentro de un árbol mínimo de expansión para G, sea (S,V-S) cualquier corte de G que respeta a A, y sea ($u, v$) una arista liviana cruzando (S, V-S). Entonces ($u, v$) es segura para A.
+Una regla para reconocer un borde seguro es la siguiente: Sea G = (V,E) un grafo indirecto y conectado, con valores de peso reales $\omega$ definidos en E. Sea A un subconjunto de E dentro de un árbol mínimo de expansión para G, sea (S,V-S) cualquier corte de G que respeta a A, y sea ($u, v$) un borde liviano cruzando (S, V-S). Entonces ($u, v$) es seguro para A.
 
 Una prueba de la regla anterior es la siguiente:
-Sea T un árbol de expansión mínima que incluye A, y asuma que T no contiene la arista liviana ($u,v$), de otra manera terminaríamos aquí. Debemos construir otro árbol de expansión mínima T'que incluya A$\cup${($u,v$)} utilizando una técnica de "corte y pegue", mostrando así que ($u,v$) es segura para A.
+Sea T un árbol de expansión mínima que incluye A, y asuma que T no contiene el borde liviano ($u,v$), de otra manera terminaríamos aquí. Debemos construir otro árbol de expansión mínima T'que incluya A$\cup${($u,v$)} utilizando una técnica de "corte y pegue", mostrando así que ($u,v$) es seguro para A.
 
-La arista ($u, v$) forma un ciclo con las aristas en el camino $p$ de $u$ a $v$ en T, como se ilustra en la figura \ref{F:MST3}. Los vértices negros están en S y los blancos en V-S. Las aristas en A están sombreadas, y ($u, v$) es una arista liviana cruzando el corte (S, V-S). La arista ($x, y$) yace en el camino $p$ de $u$ a $v$ en T y no está en A. Para formar un árbol de expansión mínima T'que contenga ($u, v$), se remueve la arista ($x, y$) de T y se agrega ($u, v$), por lo tanto:
+La borde ($u, v$) forma un ciclo con los bordes en el camino $p$ de $u$ a $v$ en T, como se ilustra en la figura \ref{F:MST3}. Los vértices negros están en S y los blancos en V-S. Los bordes en A están sombreados, y ($u, v$) es una borde liviano cruzando el corte (S, V-S). El borde ($x, y$) yace en el camino $p$ de $u$ a $v$ en T y no está en A. Para formar un árbol de expansión mínima T'que contenga ($u, v$), se remueve el borde ($x, y$) de T y se agrega ($u, v$), por lo tanto:
 \begin{equation}
 \omega(T') = \omega(T) - \omega(x,y) + \omega(u,v)\leq \omega(T) 
 \end{equation}
@@ -414,29 +418,29 @@ La arista ($u, v$) forma un ciclo con las aristas en el camino $p$ de $u$ a $v$ 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.5\textwidth]{./safeedge.png} 
-\caption{Ilustración de la prueba de la regla la encontrar una arista segura}
+\caption{Ilustración de la prueba de la regla la encontrar un borde seguro}
 \label{F:MST3}
 \end{figure}
 
 De esta manera T' debe ser un árbol de expansión mínima también, además tenemos que A $\subseteq$ T', y A $\subseteq$ T además ($x, y$) $\notin$ A; en consecuencia A$\cup {(u, v)} \subseteq T'$, entonces ($u, v$) es seguro para A.
 
-El ciclo \textbf{while} en las líneas 2-4, del seudocódigo anterior se ejecuta V-1 veces. Inicialmente cuando A =$ \emptyset$, hay V árboles en $G_A = (G,A)$, y cada iteración reduce ese número en 1. Cuando el bosque contiene un solo árbol, el método termina. Ambos algoritmos implementados siguen esta regla, solo que cada uno usa una regla específica para encontrar la arista segura de la línea 3.
+El ciclo \textbf{while} en las líneas 2-4, del seudocódigo anterior se ejecuta V-1 veces. Inicialmente cuando A =$ \emptyset$, hay V árboles en $G_A = (G,A)$, y cada iteración reduce ese número en 1. Cuando el bosque contiene un solo árbol, el método termina. Ambos algoritmos implementados siguen esta regla, solo que cada uno usa una regla específica para encontrar la borde seguro de la línea 3.
 
 \subsubsection{Clase WeightedEdge}
 
-Para representar un grafo de aristas con peso se procedió a extender la clase graph básica, en una representación de matriz de adyacencia, la cual puede contener aristas con peso en lugar de valores enteros, las cuales están formadas por los nodos y su peso. Para esto se creó una clase Edge y WeightedGraph que cuentan con los siguientes métodos:
+Para representar un grafo de bordes con peso se procedió a extender la clase graph básica, en una representación de matriz de adyacencia, la cual puede contener bordes con peso en lugar de valores enteros, los cuales están formados por los nodos y su peso. Para esto se creó una clase Edge y WeightedGraph que cuentan con los siguientes métodos:
 
 
 \begin{table}[h]\center
 \begin{tabular}{|l|l|}
 \hline
 \multicolumn{2}{|c|}{\textbf{API Clase Edge}}                                                                                                            \\ \hline
-Edge(int u, int v, float w)    & \begin{tabular}[c]{@{}c@{}}método constructor, inicializa la arista a \\ partir de sus nodos u, v y peso w\end{tabular} \\ \hline
-float weight()                 & devuelve el peso de la arista                                                                                           \\ \hline
-int either()                   & \begin{tabular}[c]{@{}c@{}}devuelve cualquiera de los nodos \\ que conforman la arista\end{tabular}                     \\ \hline
+Edge(int u, int v, float w)    & \begin{tabular}[c]{@{}c@{}}método constructor, inicializa el borde a \\ partir de sus nodos u, v y peso w\end{tabular} \\ \hline
+float weight()                 & devuelve el peso del borde                                                                                           \\ \hline
+int either()                   & \begin{tabular}[c]{@{}c@{}}devuelve cualquiera de los nodos \\ que conforman el borde\end{tabular}                     \\ \hline
 int other(int v)               & devuelve el nodo u                                                                                                      \\ \hline
-int compareTo(Edge e)          & compara el peso w con el de la arista e                                                                                 \\ \hline
-void toString()                & imprime los nodos y el peso de la arista                                                                                \\ \hline
+int compareTo(Edge e)          & compara el peso w con el del borde e                                                                                 \\ \hline
+void toString()                & imprime los nodos y el peso del borde                                                                                \\ \hline
 Edge\& operator=(const Edge\&) & \begin{tabular}[c]{@{}c@{}}sobrecarga del operador asignación para \\ los objetos Edge\end{tabular}                     \\ \hline
 \end{tabular}
 \end{table}
@@ -447,13 +451,13 @@ Edge\& operator=(const Edge\&) & \begin{tabular}[c]{@{}c@{}}sobrecarga del opera
 \multicolumn{2}{|c|}{\textbf{API Clase WeightedGraph}}                                                                                                               \\ \hline
 WeightedGraph(int V) & \begin{tabular}[c]{@{}c@{}}método constructor, inicializa y reserva \\ memoria para un grafo de V vértices\end{tabular}                       \\ \hline
 int V()              & devuelve el número de vértices del grafo                                                                                                      \\ \hline
-int E()              & devuelve el número de aristas del grafo                                                                                                       \\ \hline
+int E()              & devuelve el número de bordes del grafo                                                                                                       \\ \hline
 
 void addEdge(Edge e) & \begin{tabular}[c]{@{}c@{}}agrega un objeto edge al grafo y a la \\ lista de adyacencia\end{tabular}                     \\ \hline
 \end{tabular}
 \end{table}
 
-Cada bolsa de la lista de adyacencia es una lista enlazada, respetando la implementación de los algoritmos de grafos indirectos y directos, cuyo contenido referencia a objetos Edge, o aristas que se conectan a el nodo $v$. Se selecciona esta estructura debido a que logra un código más compacto y limpio, sin embargo conlleva un pequeño precio, cada nodo de la lista de adyacencia, tiene una referencia a un objeto Edge con información redundante. Sin embargo tenemos solo una copia de cada uno. 
+Cada bolsa de la lista de adyacencia es una lista enlazada, respetando la implementación de los algoritmos de grafos indirectos y directos, cuyo contenido referencia a objetos Edge, o bordes que se conectan a el nodo $v$. Se selecciona esta estructura debido a que logra un código más compacto y limpio, sin embargo conlleva un pequeño precio, cada nodo de la lista de adyacencia, tiene una referencia a un objeto Edge con información redundante. Sin embargo tenemos solo una copia de cada uno. 
 
 El tipo de datos que analizarán los programas tienen la siguiente estructura:\\
 \textbf{Grafo TinyEW, de la figura \ref{MST1}:}
@@ -477,7 +481,7 @@ El tipo de datos que analizarán los programas tienen la siguiente estructura:\\
 6 0 0.58
 6 4 0.93
 \end{verbatim}
-Donde en la primera fila se especifica el número de vértices, en la segunda el número de aristas, y en las siguientes filas se define cada arista, en las cuales primero se muestran los dos nodos que la conforman y el tercer número corresponde a su peso. A este tipo de grafo se le llama Euclidiano, ya que todos sus vértices son puntos que se encuentran en un mismo plano. El objetivo es encontrar el MST de tal tipo de grafo en una cantidad de tiempo razonable. Obteniendo un resultado como el siguiente:
+Donde en la primera fila se especifica el número de vértices, en la segunda el número de bordes, y en las siguientes filas se define cada borde, en las cuales primero se muestran los dos nodos que une y el tercer número corresponde a su peso. A este tipo de grafo se le llama Euclidiano, ya que todos sus vértices son puntos que se encuentran en un mismo plano. El objetivo es encontrar el MST de tal tipo de grafo en una cantidad de tiempo razonable. Obteniendo un resultado como el siguiente:
 \begin{verbatim}
 El MST del grafo anterior es:
 0-7 0.16
@@ -492,57 +496,86 @@ su peso total es: 1.81
 
 \subsubsection{Algoritmo de Prim}
 
-Este algoritmo es un caso especial del método genérico mostrado en la sección anterior. Tiene la propiedad de que cada arista en el conjunto A siempre forma un solo árbol. Como lo muestra la figura ref3, el árbol empieza de un vértice raiz arbitrario $r$ y crece hasta que se expanda por todos los vértices en V. Cada paso agrega una arista liviana al árbol A, que lo conecta con un vértice aislado, la cual es segura para A; por lo tanto cuando el algoritmo termina, A forma un árbol de expansión mínima. 
+Este algoritmo es un caso especial del método genérico mostrado en la sección anterior. Tiene la propiedad de que cada borde en el conjunto A siempre forma un solo árbol. Como lo muestra la figura ref3, el árbol empieza de un vértice raiz arbitrario $r$ y crece hasta que se expanda por todos los vértices en V. Cada paso agrega un borde liviano al árbol A, que lo conecta con un vértice aislado, el cual es seguro para A; por lo tanto cuando el algoritmo termina, A forma un árbol de expansión mínima. 
 
-\textbf{Estructuras de datos:} Estas van a representar los vértices en el árbol, las aristas en el árbol, y las aristas que cruzan los cortes, de la siguiente manera:
+\textbf{Estructuras de datos:} Estas van a representar los vértices en el árbol, las bordes en el árbol, y los bordes que cruzan los cortes, de la siguiente manera:
 \begin{itemize}
 \item \textit{Vértices en el árbol}: Utilizamos un array booleano indexado llamado marked[ ], donde marked[v] es true si v está en el árbol.
-\item \textit{Aristas en el árbol}: Se pueden utilizar dos estructuras: una cola llamada mst para almacenar objetos Edge o un array indexado llamado edgeTo[ ] de objetos Edge, donde edgeTo[v] es la arista que conecta v con el árbol.
-\item \textit{Aristas cruzando un corte}: Utilizamos una cola de prioridad MinPQ que compara aristas por peso.  
+\item \textit{bordes en el árbol}: Se pueden utilizar dos estructuras: una cola llamada mst para almacenar objetos Edge o un array indexado llamado edgeTo[ ] de objetos Edge, donde edgeTo[v] es la borde que conecta v con el árbol.
+\item \textit{bordes cruzando un corte}: Utilizamos una cola de prioridad MinPQ que compara bordes por peso.  
 \end{itemize}
 
-Cada vez que agregamos una arista al árbol, agregamos un vértice también. Para mantener un grupo de aristas cruzantes, debemos agregar a una cola de prioridad todas las aristas de ese vertice a todos los vértices que no forman parte del árbol, usando marked[ ] para identificarlos. Sin embargo debemos hacer algo adicional, toda arista conectada a el vértice recién añadido debe marcarse como ineligible, es decir, no sería más una arista cruzante, porque conectaría dos vértices del árbol, haciéndolo cíclico.
+\begin{figure}[!h]
+    \begin{tikzpicture}
+        \DrawEJcGraph{0}{0/4,0/2,0/6}{7/0}{}{}
+        \DrawEJcGraph{0,7}{0/4,0/2,0/6,5/7}{7/1}{7/0}{xshift=7.7cm}
+        \DrawEJcGraph{0,7,1}{0/4,0/6,5/7,1/3}{0/2}{7/0,7/1}{yshift=-4cm}
+        \DrawEJcGraph{7,0,1,2}{0/4,5/7,2/6}{2/3}{7/0,3/2,0/2}{yshift=-4cm,xshift=7.7cm}
+        \DrawEJcGraph{7,0,1,2,3}{0/4,2/6}{5/7}{7/0,3/2,7/1,2/3,0/2}{yshift=-8cm}
+        \DrawEJcGraph{7,0,1,2,3,5}{2/6}{5/4}{7/0,3/2,7/1,2/3,0/2,5/7}{yshift=-8cm,xshift=7.7cm}
+        \DrawEJcGraph{7,0,1,2,3,5,4}{}{2/6}{7/0,3/2,7/1,2/3,0/2,5/7,5/4}{yshift=-12cm}
+        \DrawEJcGraph{6,7,0,1,2,3,5,4}{}{}{7/0,3/2,7/1,0/2,5/7,5/4,2/6}{yshift=-12cm,xshift=7.7cm}
+    \end{tikzpicture}
+    \caption{Algoritmo paso a paso de Prim Eager, bordes en el MST(azul), bordes livianos(rojo grueso), bordes en pq(rojos delgados)}
+    \label{MST4}
+\end{figure}
 
-Se desarrollaron dos implementaciones del algoritmo de Prim, una en la cual no se eliminan estas aristas ineligibles y se dejan en la cola de prioridad, al cual llamamos $Lazy$ o perezoso, y otro el cual los elimina de la cola llamado $Eager$. 
+Cada vez que agregamos un borde al árbol, agregamos un vértice también. Para mantener un grupo de bordes cruzantes, debemos agregar a una cola de prioridad todos los bordes de ese vertice a todos los vértices que no forman parte del árbol, usando marked[ ] para identificarlos. Sin embargo debemos hacer algo adicional, todo borde conectado al vértice recién añadido debe marcarse como ineligible, es decir, no sería más un borde cruzante, porque conectaría dos vértices del árbol, haciéndolo cíclico.
 
-Para implementar el algoritmo utilizamos un método privado llamado visit(), que agrega un vértice al árbol, marcándolo en marked[ ], y agregando todas las aristas incidentes (que no son ineligibles si es eager) a este vértice en la cola de prioridad. Un ciclo interno del método toma una arista de la cola, y (si no es ineligible) la agrega al árbol junto con su vértice, actualizando el grupo de aristas cruzantes llamando de nuevo a visit() con el nuevo vértice agregado como argumento. 
+Se desarrollaron dos implementaciones del algoritmo de Prim, una en la cual no se eliminan estos bordes ineligibles y se dejan en la cola de prioridad, al cual llamamos $Lazy$ o perezoso, y otro el cual los elimina de la cola llamado $Eager$. 
 
-Para implementar el Eager Prim, que es más eficiente, ya que selecciona de una forma más rápida las nuevas aristas que se agregan al árbol A, necesitamos mantener en la cola de prioridad solo una arista por cada vértice $v$ que no esté en A: La mínima arista, o la más liviana. Las demás se convierten en ineligibles.
+Para implementar el algoritmo utilizamos un método privado llamado visit(), que agrega un vértice al árbol, marcándolo en marked[ ], y agregando todos los bordes incidentes (que no son ineligibles si es eager) a este vértice en la cola de prioridad. Un ciclo interno del método toma un borde de la cola, y (si no es ineligible) lo agrega al árbol junto con su vértice, actualizando el grupo de bordes cruzantes llamando de nuevo a visit() con el nuevo vértice agregado como argumento. 
+
+Para implementar el Eager Prim, que es más eficiente, ya que selecciona de una forma más rápida los nuevos bordes que se agregan al árbol A, necesitamos mantener en la cola de prioridad solo un borde por cada vértice $v$ que no esté en A: El mínimo borde, o el más liviano. Los demás se convierten en ineligibles.
 
 En este algoritmo se reemplazan las estructuras de datos marked[ ] y mst[ ] en LazyPrim por dos arrays indexados edgeTo[ ] y distTo[ ], que tienen las siguientes propiedades:
 
 \begin{itemize}
-\item Si $v$ no está en el árbol pero tiene al menos una arista conectada a este, entonces edgeTo[v] es la mínima arista conectando v a el árbol, y distTo[v] es el peso de esa arista.
-\item Todos esos vértices v son mantenidos en la cola de prioridad indexada, como un índice v asociado a esa arista.
+\item Si $v$ no está en el árbol pero tiene al menos un borde conectado a este, entonces edgeTo[v] es el mínimo borde conectando v a el árbol, y distTo[v] es el peso de ese borde.
+\item Todos esos vértices v son mantenidos en la cola de prioridad indexada, como un índice v asociado a ese borde.
 \end{itemize} 
-La mínima clave o $key$ en la cola de prioridad, es el peso de la arista liviana, y su vértice asociado v, es el siguiente que se agregará a A. La estructura marked[ ] no es necesaria, ya que la condición !marked[v] es equivalente a la condición distTo[v]=$\infty$.   
+La mínima clave o $key$ en la cola de prioridad, es el peso del borde liviano, y su vértice asociado v, es el siguiente que se agregará a A. La estructura marked[ ] no es necesaria, ya que la condición !marked[v] es equivalente a la condición distTo[v]=$\infty$.   
 
 \subsubsection{Algoritmo de Kruskal}
-Este algoritmo encuentra una arista segura para agregar al bosque en crecimiento (MST), tomando de todas la que conectan dos árboles cualquiera en el bosque, la de menor peso. Sea $C_1$ y $C_2$ estos dos árboles cualquiera, conectados por ($u, v$), y ya que este debe ser una arista liviana y además conecta a $C_1$ a otro árbol, implica que $(u, v)$ es segura para $C_1$. 
+Este algoritmo encuentra un borde seguro para agregar al bosque en crecimiento (MST), tomando de todos los que conectan dos árboles cualquiera en el bosque, el de menor peso. Sea $C_1$ y $C_2$ estos dos árboles cualquiera, conectados por ($u, v$), y ya que este debe ser una borde liviano y además conecta a $C_1$ a otro árbol, implica que $(u, v)$ es seguro para $C_1$. 
 
-Empezamos con un bosque degenerado de V vértices individuales y realizamos una operación de combinación de parejas de árboles por medio de aristas livianas, hasta que quede un solo árbol: el MST.
+Empezamos con un bosque degenerado de V vértices individuales y realizamos una operación de combinación de parejas de árboles por medio de bordes livianos, hasta que quede un solo árbol: el MST.
 
-La figura ref44 ilustra paso por paso un ejemplo de la operación de Kruskal sobre el grafo TinyEW, cuyas aristas se muestran ordenas por peso a continuación: 
+La figura \ref{MST5} ilustra paso por paso un ejemplo de la operación de Kruskal sobre el grafo TinyEW, cuyas aristas se muestran ordenas por peso a continuación, y donde los vértices rojos representan cortes definidos por vértices conectados a una de las aristas de los vértices rojos: 
 
 \begin{verbatim}
-0-7 0.16 -arista del MST
-2-3 0.17 -arista del MST
-1-7 0.19 -arista del MST
-0-2 0.26 -arista del MST
-5-7 0.28 -arista del MST
-1-3 0.29 -arista obsoleta (forma un ciclo)
-1-5 0.32 -arista obsoleta (forma un ciclo)
-2-7 0.34 -arista obsoleta (forma un ciclo)
-4-5 0.35 -arista del MST
-1-2 0.36 -arista obsoleta (forma un ciclo)
-4-7 0.37 -arista obsoleta (forma un ciclo)
-0-4 0.38 -arista obsoleta (forma un ciclo)
-6-2 0.40 -arista del MST
-3-6 0.52 -arista obsoleta (forma un ciclo)
-6-0 0.58 -arista obsoleta (forma un ciclo)
-6-4 0.93 -arista obsoleta (forma un ciclo)
+0-7 0.16 -arista del MST (azul)
+2-3 0.17 -arista del MST (azul)
+1-7 0.19 -arista del MST (azul)
+0-2 0.26 -arista del MST (azul)
+5-7 0.28 -arista del MST (azul)
+1-3 0.29 -arista obsoleta (forma un ciclo) (negra) 
+1-5 0.32 -arista obsoleta (forma un ciclo) (negra)
+2-7 0.34 -arista obsoleta (forma un ciclo) (negra)
+4-5 0.35 -arista del MST (azul)
+1-2 0.36 -arista obsoleta (forma un ciclo) (negra)
+4-7 0.37 -arista obsoleta (forma un ciclo) (negra)
+0-4 0.38 -arista obsoleta (forma un ciclo) (negra)
+6-2 0.40 -arista del MST (azul)
+3-6 0.52 -arista obsoleta (forma un ciclo) (negra)
+6-0 0.58 -arista obsoleta (forma un ciclo) (negra)
+6-4 0.93 -arista obsoleta (forma un ciclo) (negra)
 \end{verbatim}
 
+\begin{figure}[!h]
+    \begin{tikzpicture}
+        \DrawEJcGraph{}{}{}{}{}
+        \DrawEJcGraph{0}{}{7/0}{}{xshift=7.7cm}
+        \DrawEJcGraph{2}{}{3/2}{7/0}{yshift=-4cm}
+        \DrawEJcGraph{7,0}{}{7/1}{7/0,3/2}{yshift=-4cm,xshift=7.7cm}
+        \DrawEJcGraph{7,0,1}{}{0/2}{7/0,3/2,7/1}{yshift=-8cm}
+        \DrawEJcGraph{5}{}{5/7}{7/0,3/2,7/1,0/2}{yshift=-8cm,xshift=7.7cm}
+        \DrawEJcGraph{5,7,1,0,2,3}{}{5/4}{7/0,3/2,7/1,0/2,5/7}{yshift=-12cm}
+        \DrawEJcGraph{6}{}{2/6}{7/0,3/2,7/1,0/2,5/7,5/4}{yshift=-12cm,xshift=7.7cm}
+    \end{tikzpicture}
+    \caption{Algoritmo paso a paso de Kruskal}
+    \label{MST5}
+\end{figure}
 
 \newpage
 \subsection{Algoritmos para la b\'usqueda de la ruta m\'as corta}

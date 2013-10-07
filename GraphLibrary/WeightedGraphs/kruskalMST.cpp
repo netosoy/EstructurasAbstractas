@@ -2,14 +2,14 @@
 
 kruskalMST::kruskalMST(EdgeWeightedGraph &G){
 	pq = G.priorityQueue();
-	UF uf(G.V());
+	UnionFinder uf(G.V());
 	while(!pq.empty()){
-		Edge e = pq.top();
-		pq.pop();
-		int u = e.either(), v = e.other(u);
-		if(uf.connected(u,v)) continue;
-		uf.Union(u,v);
-		mst.push(e);
+		Edge e = pq.top();// Get min weight edge on pq
+		pq.pop();			
+		int u = e.either(), v = e.other(u); // and its vertices.
+		if(uf.connected(u,v)) continue;// Ignore ineligible edges.
+		uf.Union(u,v);							// Merge components.
+		mst.push(e);						// Add edge to mst.				
 	}	
 }
 

@@ -96,8 +96,10 @@ Private Attributes</h2></td></tr>
 &lt; <a class="el" href="classEdge.html">Edge</a> &gt;, <a class="el" href="classCompareEdges.html">CompareEdges</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkruskalMST.html#a1b33fb8406a3ddb8b60c420e7503642e">pq</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="kruskalMST_8hh_source.html#l00012">12</a> of file <a class="el" href="kruskalMST_8hh_source.html">kruskalMST.hh</a>.</p>
+<div class="textblock"><p>Kruskal algorithm implementation. </p>
+<p>This implementation of Kruskal’s algorithm uses a queue to hold MST edges, a priority queue to hold edges not yet examined, and a union-find data structure for identifying ineligible edges. The MST edges are returned to the client in increasing order of their weights. </p>
+
+<p>Definition at line <a class="el" href="kruskalMST_8hh_source.html#l00016">16</a> of file <a class="el" href="kruskalMST_8hh_source.html">kruskalMST.hh</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a5b86c6d231731db8aa2238c307047cf0"></a><!-- doxytag: member="kruskalMST::kruskalMST" ref="a5b86c6d231731db8aa2238c307047cf0" args="(EdgeWeightedGraph &amp;G)" -->
 <div class="memitem">
@@ -113,6 +115,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">G</td><td>Analyzed weighted graph. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -131,7 +141,9 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="kruskalMST_8hh_source.html#l00020">20</a> of file <a class="el" href="kruskalMST_8hh_source.html">kruskalMST.hh</a>.</p>
+<p>Gets MST's edge queue. </p>
+
+<p>Definition at line <a class="el" href="kruskalMST_8hh_source.html#l00033">33</a> of file <a class="el" href="kruskalMST_8hh_source.html">kruskalMST.hh</a>.</p>
 
 </div>
 </div>
@@ -149,6 +161,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Prints MST's edges. </p>
+
 </div>
 </div>
 <a class="anchor" id="ac68af208484b21aa672f60cc1b4a530e"></a><!-- doxytag: member="kruskalMST::weight" ref="ac68af208484b21aa672f60cc1b4a530e" args="()" -->
@@ -165,6 +179,8 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Gets MST total weight. </p>
+
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
@@ -178,8 +194,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>MST vertices </p>
 
-<p>Definition at line <a class="el" href="kruskalMST_8hh_source.html#l00013">13</a> of file <a class="el" href="kruskalMST_8hh_source.html">kruskalMST.hh</a>.</p>
+<p>Definition at line <a class="el" href="kruskalMST_8hh_source.html#l00017">17</a> of file <a class="el" href="kruskalMST_8hh_source.html">kruskalMST.hh</a>.</p>
 
 </div>
 </div>
@@ -193,8 +210,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>priority queu with all edges sorted by weight </p>
 
-<p>Definition at line <a class="el" href="kruskalMST_8hh_source.html#l00014">14</a> of file <a class="el" href="kruskalMST_8hh_source.html">kruskalMST.hh</a>.</p>
+<p>Definition at line <a class="el" href="kruskalMST_8hh_source.html#l00018">18</a> of file <a class="el" href="kruskalMST_8hh_source.html">kruskalMST.hh</a>.</p>
 
 </div>
 </div>
@@ -207,7 +225,7 @@ Private Attributes</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="classkruskalMST.html">kruskalMST</a>      </li>
 
-    <li class="footer">Generated on Sun Oct 6 2013 23:53:12 for GraphLib by
+    <li class="footer">Generated on Mon Oct 7 2013 01:33:17 for GraphLib by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>
