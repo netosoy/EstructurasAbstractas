@@ -7,8 +7,8 @@ MyBag::MyBag(void){
 }
 
 void MyBag::add(const Edge& arista){
-	T_celda *oldfirst = first_element;
-	first_element = new T_celda;
+	T_cell *oldfirst = first_element;
+	first_element = new T_cell;
 	first_element->edge = arista;
 	first_element->next = oldfirst;
 	N++;
@@ -22,7 +22,7 @@ void MyBag::beginIterate(void){
 } 
 
 Edge MyBag::getEdge(){
-	T_celda * current = iterator;
+	T_cell * current = iterator;
 	if(iterator!=NULL) {
 	iterator = iterator->next;
 	}
@@ -36,8 +36,11 @@ bool MyBag::isEnd(){
 
 }
 
+ 
+
+//imprime BOLSAS CON OBJETOS EDGES--PRUEBA
 void MyBag::print_EdgeBag(void) {
-		T_celda * current;
+		T_cell * current;
 		current = first_element;  
       while (current!= NULL){
       	current->edge.toString();
@@ -55,10 +58,10 @@ int MyBag::size_of(){
 
 MyBag::~MyBag(void) {
 
-	T_celda * current;
+	T_cell * current;
 	current = first_element;  
    while (current!= NULL){
-   	T_celda* next = current->next;
+   	T_cell* next = current->next;
    	delete current;
    	current = next;
    }
