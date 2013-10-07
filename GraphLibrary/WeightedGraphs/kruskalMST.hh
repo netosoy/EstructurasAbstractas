@@ -1,11 +1,13 @@
+#ifndef CLASEKMST
+#define CLASEKMST
+
 #include <queue>
 #include "weightedGraph.hh"
 #include "unionFinder.hh"
 
 using namespace std;
 
-#ifndef CLASEKMST
-#define CLASEKMST
+
 
 class kruskalMST{
 	queue<Edge> mst;

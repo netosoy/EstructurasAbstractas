@@ -1,11 +1,13 @@
+#ifndef CLASEEPMST
+#define CLASEEPMST
+
+
 #include "weightedGraph.hh"
 #include "indexPriorityQ.cpp"
 #include <climits>
 
 using namespace std;
 
-#ifndef CLASEEPMST
-#define CLASEEPMST
 
 
 class EagerPrimMST{

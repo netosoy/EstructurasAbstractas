@@ -1,9 +1,10 @@
+#ifndef CLASELPMST
+#define CLASELPMST
+
 #include "weightedGraph.hh"
 
 using namespace std;
 
-#ifndef CLASELPMST
-#define CLASELPMST
 
 class LazyPrimMST{
 private: 

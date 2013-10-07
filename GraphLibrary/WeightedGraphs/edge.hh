@@ -1,26 +1,28 @@
+#ifndef CLASEEDGE
+#define CLASEEDGE
+
 #include <iostream>
 #include <vector>
 #include <string>
-#ifndef CLASEEDGE
-#define CLASEEDGE
+
 using namespace std;
 
 class Edge{
 
 private:
-	int u;
-	int v;
-	float w;
+	int u; //one vertex
+	int v;	//the other vertex
+	float w; //edge weight
 	
 public:
-	Edge();
-	Edge(int u, int v, float w);	
-	float weight();
-	int either();
-	int other(int vertex);
-	int compareTo(Edge e);
-	void toString();
-	Edge& operator=(const Edge&);
+	Edge(); //default initializing constructor
+	Edge(int u, int v, float w);	//initializing constructor
+	float weight(); //weight of this edge
+	int either(); //either of this edge's vertices
+	int other(int vertex); //the othr vertex
+	int compareTo(Edge e); //compare this edge weight to e
+	void toString(); 	//Print edge nodes and weight
+	Edge& operator=(const Edge&); //asignation overlad
 	
 
 };

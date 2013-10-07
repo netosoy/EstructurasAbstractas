@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.11)  5 OCT 2013 17:31
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.5.11)  6 OCT 2013 00:08
 entering extended mode
  %&-line parsing enabled.
 **Doc2.tex
@@ -622,18 +622,18 @@ File: tikzlibrarypositioning.code.tex 2008/10/06 v2.10 (rcs-revision 1.7)
 ) (./Doc2.aux)
 \openout1 = `Doc2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 154.
-LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 197.
+LaTeX Font Info:    ... okay on input line 197.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 197.
+LaTeX Font Info:    ... okay on input line 197.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 197.
+LaTeX Font Info:    ... okay on input line 197.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 197.
+LaTeX Font Info:    ... okay on input line 197.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 197.
+LaTeX Font Info:    ... okay on input line 197.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 197.
+LaTeX Font Info:    ... okay on input line 197.
 \c@lstlisting=\count129
 
 *geometry auto-detecting driver*
@@ -693,11 +693,11 @@ driver: pdftex
 \pgf@layerbox@background=\box38
 \pgf@layerboxsaved@background=\box39
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 178.
+(Font)              <10.95> on input line 221.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 178.
+(Font)              <8> on input line 221.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 178.
+(Font)              <6> on input line 221.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
@@ -705,51 +705,62 @@ Cap\'{\i }tulo 1.
 [1
 
 ]
-LaTeX Font Info:    Try loading font information for U+lasy on input line 224.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 267.
  (/usr/share/texmf-texlive/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 ) [2]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 250.
+(Font)              <5> on input line 293.
  [3]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 274.
+(Font)              <9> on input line 317.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[4] [5] [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 324--328
+[4] [5] [6] [7] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 373--385
 
  []
 
-[8] [9] [10] [11] [12] [13] (./Doc2.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 373--385
+
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[9] <./safeedge.png, id=51, 579.16376pt x 489.83pt>
+File: ./safeedge.png Graphic file (type png)
+ <use ./safeedge.png>
+[10 <./safeedge.png (PNG copy)>] [11] [12] [13] [14] [15] (./Doc2.aux) ) 
 Here is how much of TeX's memory you used:
- 12735 strings out of 493848
- 224459 string characters out of 1152823
- 278104 words of memory out of 3000000
- 15784 multiletter control sequences out of 15000+50000
+ 12762 strings out of 493848
+ 224832 string characters out of 1152823
+ 279031 words of memory out of 3000000
+ 15809 multiletter control sequences out of 15000+50000
  11289 words of font info for 40 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 56i,15n,65p,692b,736s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1
-/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
-csc10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/
-texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texliv
-e/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
-onts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr9.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
-hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-t
-exlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texmf-texlive/fonts/type1/publ
-ic/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
-/latxfont/lasy10.pfb>
-Output written on Doc2.pdf (14 pages, 222224 bytes).
+ 56i,15n,73p,692b,736s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/s
+hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-
+texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fon
+ts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-texlive/fonts/type1/p
+ublic/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi
+8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
+/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/
+texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texli
+ve/fonts/type1/public/amsfonts/latxfont/lasy10.pfb>
+Output written on Doc2.pdf (16 pages, 1081577 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
+ 122 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

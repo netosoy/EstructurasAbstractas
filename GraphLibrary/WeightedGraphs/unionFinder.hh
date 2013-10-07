@@ -1,6 +1,7 @@
-#include <iostream>
 #ifndef CLASEUF
 #define CLASEUF
+#include <iostream>
+
 using namespace std;
 class UF{
 	

@@ -1,10 +1,11 @@
-#include "bag.hh"
+#ifndef CLASEEWG
+#define CLASEEWG
+
+#include "Mybag.hh"
 #include <iostream>
 #include <vector>
 #include <queue>
 
-#ifndef CLASEEWG
-#define CLASEEWG
 
 class CompareEdges{
 public: 
