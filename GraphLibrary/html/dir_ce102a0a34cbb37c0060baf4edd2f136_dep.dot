@@ -1,0 +1,6 @@
+digraph "WeightedGraphs" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  dir_ce102a0a34cbb37c0060baf4edd2f136 [shape=box, label="WeightedGraphs", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_ce102a0a34cbb37c0060baf4edd2f136.html"];
+}

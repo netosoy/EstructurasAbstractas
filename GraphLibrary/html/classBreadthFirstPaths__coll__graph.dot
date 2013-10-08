@@ -1,0 +1,18 @@
+digraph "BreadthFirstPaths"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="BreadthFirstPaths",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" queue" ,fontname="Helvetica"];
+  Node2 [label="MyQueue",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classMyQueue.html"];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" head\nlast\niterator" ,fontname="Helvetica"];
+  Node3 [label="Node",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classNode.html"];
+  Node3 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" next" ,fontname="Helvetica"];
+  Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" head\nlast" ,fontname="Helvetica"];
+  Node4 [label="node",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structnode.html"];
+  Node4 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" next" ,fontname="Helvetica"];
+  Node5 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" path" ,fontname="Helvetica"];
+  Node5 [label="MyStack",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classMyStack.html"];
+  Node3 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" head\niterator" ,fontname="Helvetica"];
+  Node4 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" head" ,fontname="Helvetica"];
+}

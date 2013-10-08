@@ -29,7 +29,7 @@ PROJECT_NUMBER         =
 # directories like "/usr/src/myproject". Separate the files or directories
 # with spaces.
 
-INPUT                  = ShortestPath WeightedGraphs
+INPUT                  = ShortestPath WeightedGraphs undirectedGraphs
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute)
 # base path where the generated documentation will be put.

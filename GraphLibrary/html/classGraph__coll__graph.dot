@@ -10,4 +10,17 @@ digraph "Graph"
   Node3 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" proximo\nnext" ,fontname="Helvetica"];
   Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" edge" ,fontname="Helvetica"];
   Node4 [label="Edge",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classEdge.html",tooltip="Edge class representation. "];
+  Node5 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" adj" ,fontname="Helvetica"];
+  Node5 [label="MyBag",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classMyBag.html",tooltip="Bag implementtion with linked lists to store Edge objects. "];
+  Node6 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" head\niterator" ,fontname="Helvetica"];
+  Node6 [label="Node",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classNode.html"];
+  Node6 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" next" ,fontname="Helvetica"];
+  Node7 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" head" ,fontname="Helvetica"];
+  Node7 [label="node",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structnode.html"];
+  Node7 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" next" ,fontname="Helvetica"];
+  Node3 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" iterator\nfirst_element" ,fontname="Helvetica"];
+  Node8 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" iterator\nfirst_element" ,fontname="Helvetica"];
+  Node8 [label="S_cell",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structS__cell.html",tooltip="Linked list struct. "];
+  Node4 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" edge" ,fontname="Helvetica"];
+  Node8 -> Node8 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" next" ,fontname="Helvetica"];
 }
